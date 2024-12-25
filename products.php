@@ -7,7 +7,7 @@ $query = $pdo->query("SELECT * FROM products");
 $products = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<div class="container mx-auto mt-40 px-4">
+<div class="container mx-auto mt-10 px-10">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-800">Daftar Produk</h1>
         <a href="add_product.php"

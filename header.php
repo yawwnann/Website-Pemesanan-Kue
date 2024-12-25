@@ -24,7 +24,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 </head>
 
-<body id="container" class="bg-pink-50">
+<body id="container" class="bg-pink-50 mx-auto ">
     <header class="bg-white shadow-md fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] rounded-lg z-50">
         <div class="flex justify-between items-center px-6 py-4">
             <!-- Logo -->

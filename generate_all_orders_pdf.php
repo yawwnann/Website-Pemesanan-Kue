@@ -57,4 +57,4 @@ $html .= '</tbody></table>';
 
 // Tulis ke PDF
 $pdf->writeHTML($html, true, false, true, false, '');
-$pdf->Output('daftar_pesanan.pdf', 'I'); // Tampilkan di browser
+$pdf->Output('daftar_pesanan.pdf', 'I');

@@ -9,7 +9,7 @@ if (!isset($_SESSION['user'])) {
 
 <link rel="stylesheet" href="css/tailwind.css">
 
-<main>
+<main class="container mx-auto ">
     <!-- Konten Utama -->
     <div class="min-h-screen px-6 py-10 flex items-center bg-gradient-to-br from-pink-50 via-purple-100 to-pink-300">
         <div class="container mx-auto px-6 lg:px-20 py-10 flex flex-col lg:flex-row items-center">
@@ -255,50 +255,7 @@ if (!isset($_SESSION['user'])) {
 
 
 <!-- Inisialisasi Swiper.js -->
-<script>
-    const testimoniSwiper=new Swiper('.testimoniSwiper',{
-        slidesPerView: 1,
-        spaceBetween: 20,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 0,
-            },
-        },
-    });
-
-    const swiper=new Swiper('.mySwiper',{
-        slidesPerView: 1,
-        spaceBetween: 20, // Jarak antar card
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20, // Jarak antar card di layar kecil
-            },
-            1024: {
-                slidesPerView: 4,
-                spaceBetween: 0, // Jarak antar card di layar besar
-            },
-        },
-    });
-
-</script>
+<script src="js/Swiper.js"></script>
 <script>
     AOS.init({
         duration: 1000,
