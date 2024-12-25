@@ -65,3 +65,12 @@ footer {
 main {
   min-height: calc(100vh - 200px); /* Kurangi tinggi footer */
 }
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem; /* jarak antar gambar */
+}
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}

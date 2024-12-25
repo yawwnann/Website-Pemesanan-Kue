@@ -125,6 +125,46 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 
+    <!-- Bagian Pilih Favorit -->
+    <div class="bg-pink-50 py-16">
+        <div class="container mx-auto px-6 lg:px-20 flex justify-center gap-8">
+            <h2 class="text-3xl font-bold text-center text-purple-800 w-full mb-8">Choose Your Favourite</h2>
+
+            <!-- Kolom Gambar -->
+            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
+                <img src="img/cakes.jpg" alt="Cakes"
+                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
+                    CAKES
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
+                <img src="img/dry-cakes.jpg" alt="Dry Cakes"
+                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
+                    DRY CAKE
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
+                <img src="img/cookies.jpg" alt="Cookies"
+                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
+                    COOKIES
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
+                <img src="img/butter-cake.jpeg" alt="Cookies"
+                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
+                    BUTTER CAKE
+                </div>
+            </div>
+
+        </div>
+    </div>
     <!-- Bagian Kartu -->
     <div class="bg-pink-50 min-h-screen ">
         <div class="container mx-auto px-6 lg:px-20">
