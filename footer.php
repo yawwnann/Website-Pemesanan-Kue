@@ -2,7 +2,7 @@
     <div class="container mx-auto px-6 lg:px-20">
         <!-- Logo and Description -->
         <div class="flex flex-col items-center text-center mb-10" data-aos="fade-up">
-            <h1 class="text-3xl font-bold text-white-400">Mamma Roti</h1>
+            <h1 class="text-3xl font-bold text-white-400">Bakery Indonesia</h1>
             <p class="text-sm mt-2">
                 Menghadirkan kelezatan otentik dan kualitas terbaik di setiap gigitan. Berkomitmen untuk menjadi teman
                 setia dalam setiap momen kamu dan orang terkasih.
@@ -16,13 +16,13 @@
                 <h2 class="text-lg font-semibold mb-3">Contact Us</h2>
                 <p class="text-sm">
                     Kami siap mendengar dan membantu Anda! Jika Anda memiliki pertanyaan, masukan atau ingin mengetahui
-                    lebih banyak tentang produk dan layanan Mamma Roti, jangan ragu untuk menghubungi kami!
+                    lebih banyak tentang produk dan layanan Bakery Indonesia, jangan ragu untuk menghubungi kami!
                 </p>
             </div>
 
-            <!-- Explore Mammaroti -->
+            <!-- Explore Bakery Indonesia -->
             <div>
-                <h2 class="text-lg font-semibold mb-3">Explore Mammaroti</h2>
+                <h2 class="text-lg font-semibold mb-3">Explore Bakery Indonesia</h2>
                 <ul class="space-y-2 text-sm">
                     <li><a href="#" class="hover:text-yellow-400">Beranda</a></li>
                     <li><a href="#" class="hover:text-yellow-400">Giveaway</a></li>
@@ -32,13 +32,14 @@
                 </ul>
             </div>
 
-            <!-- About Mammaroti -->
+            <!-- About Bakery Indonesia -->
             <div>
-                <h2 class="text-lg font-semibold mb-3">Explore Mammaroti</h2>
+                <h2 class="text-lg font-semibold mb-3">Explore Bakery Indonesia</h2>
                 <p class="text-sm mb-4">
-                    Mamma Roti tidak hanya menyajikan Mexican Buns yang lezat, tetapi juga menawarkan peluang kemitraan
+                    Bakery Indonesia tidak hanya menyajikan Mexican Buns yang lezat, tetapi juga menawarkan peluang
+                    kemitraan
                     yang menarik bagi Anda. Dengan lebih dari 90+ yang tersebar di berbagai wilayah di Indonesia, kami
-                    membuka pintu untuk Anda untuk menjadi bagian dari keluarga besar Mamma Roti.
+                    membuka pintu untuk Anda untuk menjadi bagian dari keluarga besar Bakery Indonesia.
                 </p>
                 <a href="#" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
                     Contact Us

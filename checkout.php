@@ -5,6 +5,11 @@ if (session_status() === PHP_SESSION_NONE) {
 include 'config/database.php';
 include 'header.php';
 
+if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit;
+}
+
 // Ambil data dari keranjang
 $cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 

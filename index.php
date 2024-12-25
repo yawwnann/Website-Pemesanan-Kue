@@ -26,24 +26,7 @@ if (!isset($_SESSION['user'])) {
                     data-aos="zoom-in">
                     Belanja Sekarang
                 </a>
-                <!-- Ikon Media Sosial -->
-                <div class="mt-8 flex justify-center lg:justify-start space-x-4">
-                    <a href="#"
-                        class="bg-purple-200 text-purple-600 w-12 h-12 flex items-center justify-center rounded-full hover:bg-purple-300 transition"
-                        data-aos="fade-up" data-aos-delay="100">
-                        <i class="bx bxl-facebook text-2xl"></i>
-                    </a>
-                    <a href="#"
-                        class="bg-purple-200 text-purple-600 w-12 h-12 flex items-center justify-center rounded-full hover:bg-purple-300 transition"
-                        data-aos="fade-up" data-aos-delay="200">
-                        <i class="bx bxl-linkedin text-2xl"></i>
-                    </a>
-                    <a href="#"
-                        class="bg-purple-200 text-purple-600 w-12 h-12 flex items-center justify-center rounded-full hover:bg-purple-300 transition"
-                        data-aos="fade-up" data-aos-delay="300">
-                        <i class="bx bxl-instagram text-2xl"></i>
-                    </a>
-                </div>
+
             </div>
 
             <!-- Bagian Kanan: Gambar -->
@@ -69,9 +52,9 @@ if (!isset($_SESSION['user'])) {
                     yang tak terlupakan.
                 </p>
             </div>
-            <div class="lg:w-1/2 flex justify-center mt-6 lg:mt-0" data-aos="fade-left">
+            <div class="lg:w-1/2 flex justify-center rounded-lg mt-6 lg:mt-0 overflow-hidden" data-aos="fade-left">
                 <img src="img/roti-profil.jpg" alt="Roti Profil"
-                    class="rounded-lg shadow-lg object-cover w-full max-w-md lg:max-w-lg">
+                    class="rounded-lg shadow-lg object-cover w-full max-w-md lg:max-w-lg transition-transform duration-300 transform hover:scale-110">
             </div>
         </div>
     </div>
@@ -124,6 +107,60 @@ if (!isset($_SESSION['user'])) {
             </div>
         </div>
     </div>
+
+    <!-- Bagian Pilih Favorit -->
+    <div class="bg-pink-50 ">
+        <div class="container mx-auto px-6 lg:px-20">
+            <div data-aos="fade-right">
+                <h3 class="text-lg font-semibold text-orange-600 uppercase">Cari hal yang kamu sukai</h3>
+                <h1 class="text-4xl font-bold text-gray-800 mb-8">Produk Terlaris Kami</h1>
+            </div>
+
+            <!-- Grid Produk (2 Gambar Atas, 2 Gambar Bawah) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Kolom Gambar 1 -->
+                <div class="relative group overflow-hidden" data-aos="fade-right">
+                    <img src="img/cakes.jpg" alt="Cakes"
+                        class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
+                    <div
+                        class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
+                        CAKES
+                    </div>
+                </div>
+
+                <!-- Kolom Gambar 2 -->
+                <div class="relative group overflow-hidden" data-aos="fade-down">
+                    <img src="img/dry-cakes.jpg" alt="Dry Cakes"
+                        class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
+                    <div
+                        class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
+                        DRY CAKE
+                    </div>
+                </div>
+
+                <!-- Kolom Gambar 3 -->
+                <div class="relative group overflow-hidden" data-aos="fade-up">
+                    <img src="img/cookies.jpg" alt="Cookies"
+                        class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
+                    <div
+                        class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
+                        COOKIES
+                    </div>
+                </div>
+
+                <!-- Kolom Gambar 4 -->
+                <div class="relative group overflow-hidden" data-aos="fade-left">
+                    <img src="img/butter-cake.jpeg" alt="Butter Cake"
+                        class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
+                    <div
+                        class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
+                        BUTTER CAKE
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Bagian Pilih Favorit -->
     <div class="bg-pink-50 py-16">
@@ -188,27 +225,28 @@ if (!isset($_SESSION['user'])) {
                     $query = $pdo->query("SELECT * FROM products limit 10");
                     $products = $query->fetchAll(PDO::FETCH_ASSOC);
 
-                    foreach ($products as $product):
-                        ?>
+                    foreach ($products as $product): ?>
                         <!-- Kartu dalam Slider -->
                         <div class="swiper-slide">
-                            <div class="bg-white rounded-lg p-3 shadow-md overflow-hidden flex flex-col items-center h-[450px] w-[300px] mx-auto"
-                                data-aos="fade-up">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-2 overflow-hidden flex flex-col items-center w-full max-w-[300px] mx-auto transition-transform duration-300 transform hover:scale-105">
+                                <!-- Image with fixed height -->
                                 <img src="<?= htmlspecialchars($product['image']) ?>"
                                     alt="<?= htmlspecialchars($product['name']) ?>"
-                                    class="w-full h-[60%] object-cover rounded-lg">
-                                <div class="p-6 flex flex-col justify-between h-[40%]">
-                                    <h3 class="text-2xl font-bold text-gray-800"><?= htmlspecialchars($product['name']) ?>
+                                    class="w-full h-60 object-cover rounded-t-lg transition-transform duration-300 transform group-hover:scale-110">
+                                <div class="p-4 flex flex-col justify-between h-[40%] w-full">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">
+                                        <?= htmlspecialchars($product['name']) ?>
                                     </h3>
-                                    <p class="text-base text-gray-600 mt-2">
+                                    <p class="text-sm text-gray-600 mt-2 text-center">
                                         <?= strlen($product['description']) > 50 ? substr(htmlspecialchars($product['description']), 0, 50) . '...' : htmlspecialchars($product['description']) ?>
                                     </p>
-                                    <div class="mt-4 flex items-center justify-between">
-                                        <span class="text-xl font-semibold text-purple-800">
+                                    <div class="mt-4 flex justify-between items-center">
+                                        <span class="text-lg font-semibold text-purple-800">
                                             Rp <?= number_format($product['price'], 0, ',', '.') ?>
                                         </span>
                                         <a href="#"
-                                            class="bg-purple-600 text-white text-lg px-4 py-2 rounded-lg hover:bg-purple-700 transition shadow-md">
+                                            class="bg-purple-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-purple-700 transition-shadow shadow-md">
                                             Keranjang
                                         </a>
                                     </div>
@@ -216,6 +254,7 @@ if (!isset($_SESSION['user'])) {
                             </div>
                         </div>
                     <?php endforeach; ?>
+
                 </div>
                 <div class="swiper-pagination top-15"></div>
             </div>

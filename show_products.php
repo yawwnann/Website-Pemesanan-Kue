@@ -14,7 +14,9 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-$showModal = false; // Untuk mengontrol modal
+// Tambahkan inisialisasi variabel $showModal sebelum digunakan
+$showModal = false; // Inisialisasi variabel
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $productId = $_POST['product_id'];
     $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
@@ -76,23 +78,32 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
 
             <!-- Grid Produk -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 <?php if (empty($products)): ?>
                     <p class="text-center text-gray-600 col-span-full">Produk tidak ditemukan.</p>
                 <?php else: ?>
                     <?php foreach ($products as $product): ?>
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center h-[450px] p-2">
+                        <div
+                            class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col items-center p-4 hover:scale-105 transition-all duration-300">
+
+                            <!-- Product Image with fixed height and consistent styling -->
                             <img src="<?= htmlspecialchars($product['image']) ?>"
                                 alt="<?= htmlspecialchars($product['name']) ?>"
-                                class="w-full h-[60%] object-cover rounded-t-lg">
-                            <div class="p-6 flex flex-col justify-between h-[40%] w-full">
-                                <h3 class="text-xl font-semibold text-gray-800">
-                                    <?= htmlspecialchars($product['name']) ?>
-                                </h3>
-                                <p class="text-sm text-gray-600 mt-2">
-                                    <?= htmlspecialchars(substr($product['description'], 0, 50)) . '...' ?>
+                                class="w-full h-48 object-cover rounded-t-lg mb-4">
+
+                            <div class="flex flex-col justify-between h-full w-full">
+
+                                <!-- Product Title (Centered) -->
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2 text-center">
+                                    <?= htmlspecialchars($product['name']) ?></h3>
+
+                                <!-- Product Description (Centered and trimmed) -->
+                                <p class="text-sm text-gray-600 mb-4 text-center">
+                                    <?= htmlspecialchars(substr($product['description'], 0, 80)) . (strlen($product['description']) > 80 ? '...' : '') ?>
                                 </p>
-                                <div class="mt-4 flex items-center justify-between">
+
+                                <!-- Product Price and Add to Cart Button (Aligned at the bottom) -->
+                                <div class="mt-auto flex items-center justify-between">
                                     <span class="text-lg font-bold text-purple-800">
                                         Rp <?= number_format($product['price'], 0, ',', '.') ?>
                                     </span>
@@ -107,6 +118,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                     <?php endforeach; ?>
+
                 <?php endif; ?>
             </div>
         </div>
