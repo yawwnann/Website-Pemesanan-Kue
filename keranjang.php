@@ -41,18 +41,18 @@ foreach ($cartItems as $item) {
 }
 ?>
 
-<main>
-    <div class="bg-gradient-to-br from-pink-50 via-purple-100 to-pink-300 min-h-screen py-20 pt-30">
+<main class="bg-gradient-to-br from-yellow-100 via-yellow-500 to-yellow-900">
+    <div class=" min-h-screen mt-20 py-20 pt-30">
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Judul Halaman -->
-            <div class="text-center mb-10">
-                <h2 class="text-5xl font-bold text-black">Keranjang Belanja</h2>
-                <p class="text-lg text-gray-600 mt-2">Kelola barang yang ingin Anda beli.</p>
+            <div class="text-center mb-10" data-aos="fade-up" data-aos-duration="1000">
+                <h2 class="text-5xl font-bold text-white">Keranjang Belanja</h2>
+                <p class="text-lg text-gray-900 mt-2">Kelola barang yang ingin Anda beli.</p>
             </div>
 
             <!-- Tabel Keranjang -->
             <form action="keranjang.php" method="POST">
-                <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-right" data-aos-duration="1000">
                     <div class="overflow-x-auto">
                         <table class="w-full border-collapse">
                             <thead>
@@ -67,11 +67,12 @@ foreach ($cartItems as $item) {
                             <tbody>
                                 <?php if (empty($cartItems)): ?>
                                     <tr>
-                                        <td colspan="5" class="text-center text-gray-600 py-4">Keranjang Anda kosong.</td>
+                                        <td colspan="5" class="text-center text-gray-600 py-4" data-aos="fade-in"
+                                            data-aos-delay="200">Keranjang Anda kosong.</td>
                                     </tr>
                                 <?php else: ?>
                                     <?php foreach ($cartItems as $productId => $item): ?>
-                                        <tr>
+                                        <tr data-aos="fade-up" data-aos-delay="200">
                                             <td class="px-4 py-3 flex items-center">
                                                 <img src="<?= htmlspecialchars($item['image']) ?>"
                                                     alt="<?= htmlspecialchars($item['name']) ?>"
@@ -89,7 +90,8 @@ foreach ($cartItems as $item) {
                                             </td>
                                             <td class="px-4 py-3">
                                                 <a href="keranjang.php?action=remove&id=<?= $productId ?>"
-                                                    class="text-red-500 hover:underline">Hapus</a>
+                                                    class="text-red-500 hover:underline" data-aos="fade-left"
+                                                    data-aos-delay="400">Hapus</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -98,9 +100,9 @@ foreach ($cartItems as $item) {
                         </table>
                     </div>
                     <?php if (!empty($cartItems)): ?>
-                        <div class="flex justify-between items-center mt-6">
+                        <div class="flex justify-between items-center mt-6" data-aos="fade-up" data-aos-delay="500">
                             <button type="submit" name="update_cart"
-                                class="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700">
+                                class="bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yellow-700">
                                 Perbarui Keranjang
                             </button>
                             <div class="font-bold text-lg">
@@ -113,9 +115,9 @@ foreach ($cartItems as $item) {
 
             <?php if (!empty($cartItems)): ?>
                 <!-- Tombol Checkout -->
-                <div class="flex justify-end mt-6">
+                <div class="flex justify-end mt-6" data-aos="fade-left" data-aos-delay="600">
                     <a href="checkout.php"
-                        class="bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition">
+                        class="bg-yellow-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-yellow-700 transition">
                         Lanjutkan ke Checkout
                     </a>
                 </div>
@@ -125,3 +127,13 @@ foreach ($cartItems as $item) {
 </main>
 
 <?php include 'footer.php'; ?>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+        easing: 'ease-in-out',
+    });
+</script>

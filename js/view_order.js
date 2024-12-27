@@ -40,7 +40,7 @@ const productChart = new Chart(ctxProduct, {
         label: "Jumlah Pesanan",
         data: productQuantities,
         backgroundColor: [
-          "rgba(255, 99, 132, 1)",
+          "rgb(39, 20, 24)",
           "rgba(54, 162, 235, 1)",
           "rgba(255, 206, 86, 1)",
           "rgba(75, 192, 192, 1)",
@@ -48,7 +48,7 @@ const productChart = new Chart(ctxProduct, {
           "rgba(255, 159, 64, 1)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
+          "rgb(54, 26, 32)",
           "rgba(54, 162, 235, 1)",
           "rgba(255, 206, 86, 1)",
           "rgba(75, 192, 192, 1)",

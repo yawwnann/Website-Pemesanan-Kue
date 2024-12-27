@@ -7,11 +7,11 @@ $query = $pdo->query("SELECT * FROM products");
 $products = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<div class="container mx-auto mt-10 px-10">
+<div class="container mx-auto mt-40 mb-40 px-10">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-800">Daftar Produk</h1>
         <a href="add_product.php"
-            class="bg-purple-500 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-purple-600 transition duration-300">
+            class="bg-yellow-700 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-yellow-800 transition duration-300">
             Tambah Produk
         </a>
     </div>

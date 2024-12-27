@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="flex flex-col lg:flex-row bg-white shadow-lg rounded-lg w-full lg:w-3/4 overflow-hidden">
             <!-- Bagian Kiri: Gradasi dengan Gambar -->
             <div
-                class="bg-gradient-to-br from-pink-50 via-purple-100 to-pink-300 w-full lg:w-1/2 p-10 flex flex-col justify-center relative">
+                class="bg-gradient-to-br from-amber-600 via-amber-900 to-amber-950 w-full lg:w-1/2 p-10 flex flex-col justify-center relative">
                 <img src="img/toko.png" alt="Toko"
                     class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-3/4 lg:w-1/2">
-                <h1 class="text-4xl font-bold text-purple-600 text-center mt-64 lg:mt-80">Toko Roti Indonesia</h1>
+                <h1 class="text-4xl font-bold text-white text-center mt-64 lg:mt-80">Toko Roti Indonesia</h1>
             </div>
 
             <!-- Bagian Kanan: Form Login -->
@@ -74,16 +74,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <!-- Login Button -->
                     <button type="submit"
-                        class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:bg-purple-700 transition">
+                        class="w-full bg-gradient-to-br from-amber-600 via-amber-900 to-amber-950 text-white py-3 rounded-lg font-semibold shadow-lg hover:bg-brown-700 transition">
                         Masuk
                     </button>
                 </form>
-                <p class="text-gray-500 text-center mt-4">
+                <p class="text-amber-900 text-center mt-4">
                     Belum punya akun?
-                    <a href="register.php" class="text-purple-600 font-bold hover:underline">Daftar</a>
+                    <a href="register.php" class="200 font-bold hover:underline">Daftar</a>
                 </p>
-                <p class="text-gray-500 text-center mt-4">
-                    <a href="#" class="text-purple-500 font-bold hover:underline">Lupa Kata Sandi?</a>
+                <p class="text-amber-900 text-center mt-4">
+                    <a href="#" class="text-brown-500 font-bold hover:underline">Lupa Kata Sandi?</a>
                 </p>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<footer class="bg-purple-500 text-white py-10">
+<footer class="bg-gradient-to-br from-amber-600 via-amber-900 to-amber-950 text-white py-10">
     <div class="container mx-auto px-6 lg:px-20">
         <!-- Logo and Description -->
         <div class="flex flex-col items-center text-center mb-10" data-aos="fade-up">
@@ -41,7 +41,7 @@
                     yang menarik bagi Anda. Dengan lebih dari 90+ yang tersebar di berbagai wilayah di Indonesia, kami
                     membuka pintu untuk Anda untuk menjadi bagian dari keluarga besar Bakery Indonesia.
                 </p>
-                <a href="#" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
+                <a href="#" class="bg-yellow-800 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
                     Contact Us
                 </a>
             </div>
@@ -57,15 +57,15 @@
 <style>
     .bg-brown-800 {
         background-color: #4b2f1d;
-        /* Warna cokelat gelap */
+
     }
 </style>
 <script>
     AOS.init({
-        duration: 1000, // Durasi animasi (ms)
-        once: true, // Animasi berjalan berulang kali setiap elemen terlihat
-        offset: 100, // Jarak sebelum elemen terlihat di viewport
-        mirror: true, // Memastikan animasi berjalan saat elemen masuk dan keluar dari viewport
+        duration: 1000,
+        once: true,
+        offset: 100,
+        mirror: true,
     });
 
 </script>

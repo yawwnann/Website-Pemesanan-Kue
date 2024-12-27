@@ -66,7 +66,7 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
 ?>
 
 <main>
-    <div class="container mx-auto mt-10 px-4">
+    <div class="container mx-auto mt-40 mb-40 px-4">
         <div class="container mx-auto px-6 lg:px-20">
             <div class="text-center mb-10">
                 <h2 class="text-5xl font-bold text-black">Daftar Pesanan</h2>
@@ -131,7 +131,7 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
                                     <td class="px-4 py-3"><?= htmlspecialchars($order['created_at']) ?></td>
                                     <td class="px-4 py-3">
                                         <a href="order_details.php?id=<?= $order['id'] ?>"
-                                            class="text-purple-500 hover:underline">Lihat Detail</a>
+                                            class="text-yellow-500 hover:underline">Lihat Detail</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -142,7 +142,7 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
 
             <div class="text-center mt-10">
                 <a href="generate_all_orders_pdf.php"
-                    class="bg-purple-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">
+                    class="bg-yellow-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">
                     Cetak Semua Pesanan
                 </a>
             </div>

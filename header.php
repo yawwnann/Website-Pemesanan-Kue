@@ -1,9 +1,8 @@
 <?php
-// Memeriksa apakah session sudah dimulai sebelum memanggil session_start()
-if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Mulai sesi hanya jika belum aktif
-}
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,54 +30,52 @@ if (session_status() === PHP_SESSION_NONE) {
 
 </head>
 
-<body id="container" class="bg-pink-50 mx-auto ">
+<body id="container" class="bg-yellow-50 mx-auto ">
 
-    <body id="container" class="bg-pink-50 mx-auto">
-
-        <header class="bg-white shadow-md fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] rounded-lg z-50">
-            <div class="flex justify-between items-center px-6 py-4">
-                <!-- Logo -->
-                <div class="text-purple-600 text-2xl font-bold">
-                    Bakery Indonesia
-                </div>
-
-                <!-- Navigation Menu -->
-                <nav class="flex space-x-6 text-gray-700 font-medium">
-                    <a href="index.php" class="hover:text-purple-500">Home</a>
-                    <a href="show_products.php" class="hover:text-purple-500">Products</a>
-                    <a href="contact.php" class="hover:text-purple-500">Lokasi</a>
-                    <a href="keranjang.php" class="hover:text-purple-500">Keranjang</a>
-                </nav>
-
-                <!-- Right Section -->
-                <div class="flex items-center space-x-6">
-                    <?php if (isset($_SESSION['user'])): ?>
-                        <!-- Tampilkan username jika login -->
-                        <span class="text-gray-700 hover:text-purple-500 font-medium">
-                            Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>
-                        </span>
-                        <!-- Form Logout -->
-                        <form action="logout.php" method="POST"
-                            onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
-                            <button type="submit" class="text-gray-700 hover:text-red-500 font-medium">Logout</button>
-                        </form>
-                    <?php else: ?>
-                        <!-- Tampilkan Login/Register jika belum login -->
-                        <a href="login.php" class="text-gray-700 hover:text-purple-500 font-medium">Login/Register</a>
-                    <?php endif; ?>
-                </div>
+    <header class="bg-white shadow-md fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] rounded-lg z-50">
+        <div class="flex justify-between items-center px-6 py-4">
+            <!-- Logo -->
+            <div
+                class="text-yellow-950 text-2xl font-bold hover:text-yellow-500 hover:scale-105 transform transition duration-300">
+                Bakery Indonesia
             </div>
-        </header>
 
-        <script>
-            // Script untuk animasi, jika diperlukan
-            AOS.init({
-                duration: 1000,
-                once: false,
-                offset: 100,
-                mirror: true,
-            });
-        </script>
-    </body>
+            <!-- Navigation Menu -->
+            <nav class="flex space-x-6 text-gray-700 font-medium">
+                <a href="index.php" class="hover:text-yellow-500 hover:scale-105 transition duration-300">Home</a>
+                <a href="show_products.php"
+                    class="hover:text-yellow-500 hover:scale-105 transition duration-300">Products</a>
+                <a href="contact.php" class="hover:text-yellow-500 hover:scale-105 transition duration-300">Lokasi</a>
+                <a href="keranjang.php"
+                    class="hover:text-yellow-500 hover:scale-105 transition duration-300">Keranjang</a>
+            </nav>
 
-</html>
+            <!-- Right Section -->
+            <div class="flex items-center space-x-6">
+                <?php if (isset($_SESSION['user'])): ?>
+                    <!-- Tampilkan username jika login -->
+                    <span class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
+                        Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>
+                    </span>
+                    <!-- Form Logout -->
+                    <form action="logout.php" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
+                        <button type="submit"
+                            class="text-gray-700 hover:text-red-500 hover:scale-105 font-medium transition duration-300">Logout</button>
+                    </form>
+                <?php else: ?>
+                    <!-- Tampilkan Login/Register jika belum login -->
+                    <a href="login.php"
+                        class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">Login/Register</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            offset: 100,
+            mirror: true,
+        });
+    </script>

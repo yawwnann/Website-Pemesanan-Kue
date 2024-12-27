@@ -11,18 +11,19 @@ if (!isset($_SESSION['user'])) {
 
 <main class="container mx-auto ">
     <!-- Konten Utama -->
-    <div class="min-h-screen px-6 py-10 flex items-center bg-gradient-to-br from-pink-50 via-purple-100 to-pink-300">
+    <div
+        class="min-h-screen px-6 py-10 flex items-center bg-gradient-to-br from-yellow-200 via-yellow-600 to-yellow-700">
         <div class="container mx-auto px-6 lg:px-20 py-10 flex flex-col lg:flex-row items-center">
             <!-- Bagian Kiri: Teks dan Tombol -->
             <div class="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0" data-aos="fade-right">
-                <h1 class="text-4xl lg:text-6xl font-extrabold text-purple-800 leading-tight">
+                <h1 class="text-4xl lg:text-6xl font-extrabold text-yellow-800 leading-tight">
                     Momen Manis, Dipanggang dengan Cinta
                 </h1>
                 <p class="mt-6 text-gray-600 text-lg lg:text-xl">
                     Kue, hidangan manis, dan semua yang spesial untuk momen istimewa Anda.
                 </p>
-                <a href="pages/products.php"
-                    class="mt-8 inline-block bg-purple-600 text-white text-lg px-8 py-3 rounded-lg hover:bg-purple-700 transition duration-300"
+                <a href="show_products.php"
+                    class="mt-8 inline-block bg-yellow-950 text-white font-bold text-lg px-8 py-3 rounded-lg hover:bg-yellow-700 transition duration-300"
                     data-aos="zoom-in">
                     Belanja Sekarang
                 </a>
@@ -37,14 +38,14 @@ if (!isset($_SESSION['user'])) {
     </div>
 
     <div class="relative min-h-screen flex items-center justify-center"
-        style="background: linear-gradient(to right, rgba(255, 214, 244, 0.8), rgba(252, 249, 251, 0.8)), url('img/bg-prof2.jpg'); background-size: cover; background-position: center;">
-        <div class="container mx-auto px-6 lg:px-20 py-8 flex flex-col lg:flex-row items-center lg:items-start">
+        style="background: linear-gradient(to right, rgba(105, 75, 30, 0.8), rgba(226, 159, 83, 0.8)), url('img/bg-prof2.jpg'); background-size: cover; background-position: center;">
+        <div class="container mx-auto  px-6 lg:px-20 py-8 flex flex-col lg:flex-row items-center lg:items-start">
             <!-- Bagian Kiri -->
             <div class="lg:w-1/2 text-center lg:text-left space-y-4">
-                <h3 class="text-lg font-semibold text-pink-800 uppercase" data-aos="fade-down">Kesenangan yang
+                <h3 class="text-lg font-semibold text-yellow-50 uppercase" data-aos="fade-down">Kesenangan yang
                     Dipanggang dengan Cinta</h3>
-                <h1 class="text-4xl lg:text-5xl font-bold text-gray-800" data-aos="fade-down">Bakery Indonesia</h1>
-                <p class="text-lg text-gray-Black" data-aos="fade-right">
+                <h1 class="text-4xl lg:text-5xl font-bold text-white" data-aos="fade-down">Bakery Indonesia</h1>
+                <p class="text-lg text-white" data-aos="fade-right">
                     Selamat datang di Bakery Indonesia! Dengan lebih dari 90 cabang yang tersebar di seluruh Indonesia,
                     termasuk Sumatra, Kalimantan, Sulawesi, Jawa, dan Kepulauan Bangka, Bakery Indonesia adalah tujuan
                     utama untuk hidangan panggang yang segar, lezat, dan berkualitas tinggi. Kami bangga menghadirkan
@@ -59,10 +60,10 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 
-    <div class="bg-pink-50 py-16">
+    <div class="bg-yellow-50 py-16">
         <div class="container mx-auto px-6 lg:px-20 flex flex-wrap justify-center gap-8">
             <!-- Card Diskon -->
-            <div class="bg-purple-600 text-white rounded-lg shadow-lg p-6 w-full lg:w-[45%] flex flex-col justify-between relative overflow-hidden"
+            <div class="bg-yellow-600 text-white rounded-lg shadow-lg p-6 w-full lg:w-[45%] flex flex-col justify-between relative overflow-hidden"
                 data-aos="slide-right">
                 <div>
                     <h3 class="text-lg font-semibold uppercase">Diskon</h3>
@@ -84,7 +85,7 @@ if (!isset($_SESSION['user'])) {
             </div>
 
             <!-- Card Tentang -->
-            <div class="bg-purple-600 text-white rounded-lg shadow-lg p-6 w-full lg:w-[45%] flex flex-col justify-between relative overflow-hidden"
+            <div class="bg-yellow-600 text-white rounded-lg shadow-lg p-6 w-full lg:w-[45%] flex flex-col justify-between relative overflow-hidden"
                 data-aos="slide-left">
                 <div>
                     <h3 class="text-lg font-semibold uppercase">Tentang</h3>
@@ -109,7 +110,7 @@ if (!isset($_SESSION['user'])) {
     </div>
 
     <!-- Bagian Pilih Favorit -->
-    <div class="bg-pink-50 ">
+    <div class="bg-yellow-50 ">
         <div class="container mx-auto px-6 lg:px-20">
             <div data-aos="fade-right">
                 <h3 class="text-lg font-semibold text-orange-600 uppercase">Cari hal yang kamu sukai</h3>
@@ -161,49 +162,8 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 
-
-    <!-- Bagian Pilih Favorit -->
-    <div class="bg-pink-50 py-16">
-        <div class="container mx-auto px-6 lg:px-20 flex justify-center gap-8">
-            <h2 class="text-3xl font-bold text-center text-purple-800 w-full mb-8">Choose Your Favourite</h2>
-
-            <!-- Kolom Gambar -->
-            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
-                <img src="img/cakes.jpg" alt="Cakes"
-                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-                    CAKES
-                </div>
-            </div>
-
-            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
-                <img src="img/dry-cakes.jpg" alt="Dry Cakes"
-                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-                    DRY CAKE
-                </div>
-            </div>
-
-            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
-                <img src="img/cookies.jpg" alt="Cookies"
-                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-                    COOKIES
-                </div>
-            </div>
-
-            <div class="w-full lg:w-1/3 relative group hover:scale-105 transition duration-300">
-                <img src="img/butter-cake.jpeg" alt="Cookies"
-                    class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
-                <div class="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-                    BUTTER CAKE
-                </div>
-            </div>
-
-        </div>
-    </div>
     <!-- Bagian Kartu -->
-    <div class="bg-pink-50 min-h-screen ">
+    <div class="bg-yellow-50 min-h-screen mt-20">
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Judul Bagian dan Tombol -->
             <div class="flex justify-between items-center mb-10" data-aos="fade-down">
@@ -213,7 +173,7 @@ if (!isset($_SESSION['user'])) {
                     <h1 class="text-4xl font-bold text-gray-800 mt-2">Produk Terlaris Kami</h1>
                 </div>
                 <a href="show_products.php"
-                    class="bg-purple-600 text-white text-lg px-6 py-3 rounded-lg hover:bg-purple-700 transition shadow-md">
+                    class="bg-yellow-600 text-white text-lg px-6 py-3 rounded-lg hover:bg-yellow-700 transition shadow-md">
                     Lihat Lainnya
                 </a>
             </div>
@@ -231,22 +191,30 @@ if (!isset($_SESSION['user'])) {
                             <div
                                 class="bg-white rounded-lg shadow-md p-2 overflow-hidden flex flex-col items-center w-full max-w-[300px] mx-auto transition-transform duration-300 transform hover:scale-105">
                                 <!-- Image with fixed height -->
+                                <!-- Product Image with fixed height and consistent styling -->
                                 <img src="<?= htmlspecialchars($product['image']) ?>"
                                     alt="<?= htmlspecialchars($product['name']) ?>"
-                                    class="w-full h-60 object-cover rounded-t-lg transition-transform duration-300 transform group-hover:scale-110">
-                                <div class="p-4 flex flex-col justify-between h-[40%] w-full">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">
+                                    class="w-full h-48 object-cover rounded-t-lg mb-4" data-aos="zoom-in"
+                                    data-aos-duration="1000">
+
+                                <div class="flex flex-col justify-between w-full">
+
+                                    <!-- Product Title (Centered) -->
+                                    <h3 class="text-lg font-semibold text-gray-800 " data-aos="fade-up"
+                                        data-aos-duration="1000">
                                         <?= htmlspecialchars($product['name']) ?>
                                     </h3>
-                                    <p class="text-sm text-gray-600 mt-2 text-center">
-                                        <?= strlen($product['description']) > 50 ? substr(htmlspecialchars($product['description']), 0, 50) . '...' : htmlspecialchars($product['description']) ?>
+
+                                    <!-- Product Description (Centered and trimmed) -->
+                                    <p class="text-sm text-gray-600 " data-aos="fade-up" data-aos-duration="1000">
+                                        <?= htmlspecialchars(substr($product['description'], 0, 80)) . (strlen($product['description']) > 80 ? '...' : '') ?>
                                     </p>
                                     <div class="mt-4 flex justify-between items-center">
-                                        <span class="text-lg font-semibold text-purple-800">
+                                        <span class="text-lg font-semibold text-yellow-800">
                                             Rp <?= number_format($product['price'], 0, ',', '.') ?>
                                         </span>
                                         <a href="#"
-                                            class="bg-purple-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-purple-700 transition-shadow shadow-md">
+                                            class="bg-yellow-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-yellow-700 transition-shadow shadow-md">
                                             Keranjang
                                         </a>
                                     </div>
@@ -262,7 +230,7 @@ if (!isset($_SESSION['user'])) {
     </div>
 
     <!-- Testimoni Slider -->
-    <div class="bg-pink-50 py-16">
+    <div class="bg-yellow-50 py-2 mb-10">
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Heading Section -->
             <div class="mb-8 " data-aos="slide-right">
@@ -327,13 +295,8 @@ if (!isset($_SESSION['user'])) {
 
 </main>
 
-
-
-<!-- Tambahkan Swiper.js JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-
-<!-- Inisialisasi Swiper.js -->
 <script src="js/Swiper.js"></script>
 <script>
     AOS.init({
@@ -342,8 +305,6 @@ if (!isset($_SESSION['user'])) {
         offset: 100,
         mirror: true,
     });
-
 </script>
-
 
 <?php include 'footer.php'; ?>
