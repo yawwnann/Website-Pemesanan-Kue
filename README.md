@@ -33,8 +33,4 @@ Website Pemesanan Kue adalah platform berbasis web yang memungkinkan pengguna un
 - XAMPP atau server lokal untuk pengembangan (opsional)
 - Composer (untuk manajemen dependensi)
 
-### Langkah-langkah Instalasi
-1. **Clone Repository**
-   Clone repositori ini ke server lokal atau hosting Anda.
-   ```bash
-   git clone https://github.com/username/website-pemesanan-kue.git
+
