@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    session_start(); // Mulai sesi hanya jika belum aktif
 }
 include 'config/database.php';
 
@@ -10,11 +10,20 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     exit;
 }
 
+// Pastikan pengguna sudah login
+if (!isset($_SESSION['user'])) {
+    echo "<script>alert('Silakan login terlebih dahulu.'); window.location.href = 'login.php';</script>";
+    exit;
+}
+
 // Ambil data dari form
 $name = $_POST['name'];
 $address = $_POST['address'];
 $phone = $_POST['phone'];
 $paymentMethod = $_POST['payment_method'];
+
+// Ambil ID pengguna yang sedang login
+$userId = $_SESSION['user']['id'];
 
 // Ambil data keranjang
 $cartItems = $_SESSION['cart'];
@@ -23,10 +32,10 @@ foreach ($cartItems as $item) {
     $totalPrice += $item['price'] * $item['quantity'];
 }
 
-// Simpan data pesanan ke database (contoh query)
-$stmt = $pdo->prepare("INSERT INTO orders (name, address, phone, payment_method, total_price) VALUES (?, ?, ?, ?, ?)");
-$stmt->execute([$name, $address, $phone, $paymentMethod, $totalPrice]);
-$orderId = $pdo->lastInsertId();
+// Simpan data pesanan ke database
+$stmt = $pdo->prepare("INSERT INTO orders (user_id, name, address, phone, payment_method, total_price, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt->execute([$userId, $name, $address, $phone, $paymentMethod, $totalPrice, 'pending']);
+$orderId = $pdo->lastInsertId();  // Ambil ID pesanan yang baru saja dimasukkan
 
 // Simpan detail pesanan
 foreach ($cartItems as $item) {
@@ -34,9 +43,9 @@ foreach ($cartItems as $item) {
     $stmt->execute([$orderId, $item['id'], $item['quantity'], $item['price']]);
 }
 
-// Hapus keranjang
+// Hapus keranjang setelah pesanan diproses
 unset($_SESSION['cart']);
 
-// Tampilkan pesan sukses
+// Tampilkan pesan sukses dan arahkan ke halaman utama
 echo "<script>alert('Pesanan Anda berhasil diproses!'); window.location.href = 'index.php';</script>";
 ?>

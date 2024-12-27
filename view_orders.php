@@ -22,7 +22,7 @@ if (!in_array($orderBy, $allowedColumns)) {
 }
 
 // Ambil data pesanan dari tabel orders dengan sorting
-$stmt = $pdo->prepare("SELECT * FROM orders ORDER BY id ASC");
+$stmt = $pdo->prepare("SELECT * FROM orders ORDER BY $orderBy $orderDir");
 $stmt->execute();
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -58,6 +58,20 @@ foreach ($topProducts as $product) {
     $productQuantities[] = (int) $product['total_quantity'];
 }
 
+// Menangani pengubahan status pesanan
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
+    $orderId = $_POST['order_id'];
+    $newStatus = $_POST['status'];
+
+    // Update status pesanan di database
+    $updateStmt = $pdo->prepare("UPDATE orders SET status = ? WHERE id = ?");
+    $updateStmt->execute([$newStatus, $orderId]);
+
+    // Redirect setelah update
+    header("Location: view_orders.php");
+    exit;
+}
+
 function sortingLink($column, $currentOrderBy, $currentOrderDir)
 {
     $nextOrderDir = ($currentOrderBy === $column && $currentOrderDir === 'asc') ? 'desc' : 'asc';
@@ -70,7 +84,8 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
         <div class="container mx-auto px-6 lg:px-20">
             <div class="text-center mb-10">
                 <h2 class="text-5xl font-bold text-black">Daftar Pesanan</h2>
-                <p class="text-lg text-gray-600 mt-2">Lihat semua pesanan yang telah dibuat oleh pelanggan.</p>
+                <p class="text-lg text-gray-600 mt-2">Lihat dan ubah status pesanan yang telah dibuat oleh pelanggan.
+                </p>
             </div>
 
             <!-- Diagram Batang Pemasukan per Bulan dan Diagram Donat Produk Paling Banyak Dipesan -->
@@ -113,13 +128,14 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
                                     <?= $orderBy === 'created_at' ? ($orderDir === 'asc' ? '▲' : '▼') : '' ?>
                                 </a>
                             </th>
+                            <th class="px-4 py-3">Status</th>
                             <th class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($orders)): ?>
                             <tr>
-                                <td colspan="6" class="text-center text-gray-600 py-4">Belum ada pesanan.</td>
+                                <td colspan="7" class="text-center text-gray-600 py-4">Belum ada pesanan.</td>
                             </tr>
                         <?php else: ?>
                             <?php foreach ($orders as $order): ?>
@@ -129,6 +145,22 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
                                     <td class="px-4 py-3">Rp <?= number_format($order['total_price'], 0, ',', '.') ?></td>
                                     <td class="px-4 py-3"><?= ucfirst($order['payment_method']) ?></td>
                                     <td class="px-4 py-3"><?= htmlspecialchars($order['created_at']) ?></td>
+                                    <td class="px-4 py-3">
+                                        <!-- Form untuk mengubah status pesanan -->
+                                        <form action="view_orders.php" method="POST">
+                                            <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                                            <select name="status" class="border rounded p-2">
+                                                <option value="pending" <?= $order['status'] == 'pending' ? 'selected' : '' ?>>
+                                                    Pending</option>
+                                                <option value="shipped" <?= $order['status'] == 'shipped' ? 'selected' : '' ?>>
+                                                    Shipped</option>
+                                                <option value="delivered" <?= $order['status'] == 'delivered' ? 'selected' : '' ?>>
+                                                    Delivered</option>
+                                            </select>
+                                            <button type="submit" name="update_status"
+                                                class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Update</button>
+                                        </form>
+                                    </td>
                                     <td class="px-4 py-3">
                                         <a href="order_details.php?id=<?= $order['id'] ?>"
                                             class="text-yellow-500 hover:underline">Lihat Detail</a>

@@ -31,7 +31,7 @@ $orderItems = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main>
-    <div class="bg-gradient-to-br from-pink-50 via-purple-100 to-pink-300 min-h-screen py-20 pt-30">
+    <div class="bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-800 min-h-screen py-20 pt-40">
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Judul Halaman -->
             <div class="text-center mb-10">
@@ -84,7 +84,7 @@ $orderItems = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
                 </table>
                 <div class="text-right mt-6">
                     <a href="generate_pdf.php?id=<?= $order['id'] ?>" target="_blank"
-                        class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700 transition">
+                        class="bg-yellow-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-yellow-700 transition">
                         Cetak PDF
                     </a>
                 </div>

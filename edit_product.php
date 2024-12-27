@@ -39,17 +39,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<div class="container mx-auto mt-40">
-    <h1 class="text-2xl font-bold">Edit Product</h1>
-    <form action="" method="POST" class="mt-5">
-        <input type="text" name="name" value="<?= htmlspecialchars($product['name']) ?>" placeholder="Product Name"
-            class="border p-2 w-full mb-3" required>
-        <input type="text" name="price" value="<?= htmlspecialchars($product['price']) ?>" placeholder="Price"
-            class="border p-2 w-full mb-3" required>
-        <textarea name="description" placeholder="Product Description" class="border p-2 w-full mb-3" rows="5"
-            required><?= htmlspecialchars($product['description']) ?></textarea>
-        <input type="text" name="image" value="<?= htmlspecialchars($product['image']) ?>" placeholder="Image URL"
-            class="border p-2 w-full mb-3" required>
-        <button type="submit" class="bg-blue-500 text-white p-2 rounded">Update Product</button>
+<div class="container mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg max-w-2xl">
+    <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Edit Product</h1>
+
+    <form action="" method="POST" class="space-y-6">
+        <!-- Product Name -->
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-600">Product Name</label>
+            <input id="name" type="text" name="name" value="<?= htmlspecialchars($product['name']) ?>"
+                placeholder="Product Name"
+                class="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                required>
+        </div>
+
+        <!-- Price -->
+        <div>
+            <label for="price" class="block text-sm font-medium text-gray-600">Price</label>
+            <input id="price" type="text" name="price" value="<?= htmlspecialchars($product['price']) ?>"
+                placeholder="Price"
+                class="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                required>
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-600">Product Description</label>
+            <textarea id="description" name="description" placeholder="Enter Product Description"
+                class="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                rows="5" required><?= htmlspecialchars($product['description']) ?></textarea>
+        </div>
+
+        <!-- Image URL -->
+        <div>
+            <label for="image" class="block text-sm font-medium text-gray-600">Image URL</label>
+            <input id="image" type="text" name="image" value="<?= htmlspecialchars($product['image']) ?>"
+                placeholder="Image URL"
+                class="border border-gray-300 p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                required>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit"
+                class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-200">Update
+                Product</button>
+        </div>
     </form>
 </div>

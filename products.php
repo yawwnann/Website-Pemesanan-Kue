@@ -2,14 +2,41 @@
 include 'config/database.php';
 include 'header_admin.php';
 
-// Ambil semua produk dari database
-$query = $pdo->query("SELECT * FROM products");
+// Menangani filter kategori
+$categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
+
+// Membuat query berdasarkan filter kategori
+$queryStr = "SELECT * FROM products";
+if ($categoryFilter) {
+    $queryStr .= " WHERE category = :category";
+}
+
+$query = $pdo->prepare($queryStr);
+if ($categoryFilter) {
+    $query->bindParam(':category', $categoryFilter, PDO::PARAM_STR);
+}
+
+$query->execute();
 $products = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="container mx-auto mt-40 mb-40 px-10">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-bold text-gray-800">Daftar Produk</h1>
+
+        <!-- Filter Dropdown -->
+        <div>
+            <form action="" method="GET" class="flex items-center space-x-2">
+                <select name="category" class="border border-gray-300 p-2 rounded-md">
+                    <option value="" disabled <?= empty($categoryFilter) ? 'selected' : '' ?>>Pilih Kategori</option>
+                    <option value="Kue" <?= $categoryFilter === 'Kue' ? 'selected' : '' ?>>Kue</option>
+                    <option value="Roti" <?= $categoryFilter === 'Roti' ? 'selected' : '' ?>>Roti</option>
+                </select>
+                <button type="submit"
+                    class="bg-yellow-700 text-white px-6 py-2 rounded-md shadow-md hover:bg-yellow-900 transition duration-300">Filter</button>
+            </form>
+        </div>
+
         <a href="add_product.php"
             class="bg-yellow-700 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-yellow-800 transition duration-300">
             Tambah Produk
@@ -31,18 +58,13 @@ $products = $query->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
                 <?php foreach ($products as $product): ?>
                     <tr class="border-b border-gray-200 hover:bg-gray-50">
-                        <!-- Kolom untuk Gambar -->
                         <td class="px-6 py-4">
                             <img src="<?= htmlspecialchars($product['image']) ?>"
                                 alt="<?= htmlspecialchars($product['name']) ?>" class="w-16 h-16 object-cover rounded-lg">
                         </td>
-                        <!-- Kolom untuk Nama -->
                         <td class="px-6 py-4"><?= htmlspecialchars($product['name']) ?></td>
-                        <!-- Kolom untuk Harga -->
                         <td class="px-6 py-4">Rp <?= number_format($product['price'], 0, ',', '.') ?></td>
-                        <!-- Kolom untuk Deskripsi -->
                         <td class="px-6 py-4"><?= htmlspecialchars($product['description']) ?></td>
-                        <!-- Kolom untuk Aksi -->
                         <td class="px-6 py-4 text-center">
                             <a href="edit_product.php?id=<?= $product['id'] ?>"
                                 class="text-blue-500 hover:text-blue-700 transition duration-200">Edit</a>

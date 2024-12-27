@@ -1,7 +1,7 @@
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    session_start(); // Mulai sesi hanya jika belum aktif
 }
 ?>
 
@@ -46,21 +46,30 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="show_products.php"
                     class="hover:text-yellow-500 hover:scale-105 transition duration-300">Products</a>
                 <a href="contact.php" class="hover:text-yellow-500 hover:scale-105 transition duration-300">Lokasi</a>
-                <a href="keranjang.php"
-                    class="hover:text-yellow-500 hover:scale-105 transition duration-300">Keranjang</a>
+                <a href="pesanan_status.php"
+                    class="hover:text-yellow-500 hover:scale-105 transition duration-300">Pesanan</a>
             </nav>
 
             <!-- Right Section -->
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center ">
                 <?php if (isset($_SESSION['user'])): ?>
                     <!-- Tampilkan username jika login -->
                     <span class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
                         Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>
                     </span>
-                    <!-- Form Logout -->
+
+                    <!-- Ikon Keranjang -->
+                    <a href="keranjang.php"
+                        class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
+                        <i class="bx bx-cart-alt text-2xl"></i> <!-- Ikon keranjang -->
+                    </a>
+
+                    <!-- Ikon Logout -->
                     <form action="logout.php" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
                         <button type="submit"
-                            class="text-gray-700 hover:text-red-500 hover:scale-105 font-medium transition duration-300">Logout</button>
+                            class="text-gray-700 hover:text-red-500 hover:scale-105 font-medium transition duration-300">
+                            <i class="bx bx-log-out text-2xl"></i> <!-- Ikon logout -->
+                        </button>
                     </form>
                 <?php else: ?>
                     <!-- Tampilkan Login/Register jika belum login -->
@@ -79,3 +88,7 @@ if (session_status() === PHP_SESSION_NONE) {
             mirror: true,
         });
     </script>
+
+</body>
+
+</html>

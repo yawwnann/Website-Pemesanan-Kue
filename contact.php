@@ -66,7 +66,7 @@
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
     AOS.init({
-        duration: 1000,
+        duration: 500,
         once: true,
         offset: 100,
         easing: 'ease-in-out',
