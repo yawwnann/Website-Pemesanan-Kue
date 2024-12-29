@@ -24,7 +24,7 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Judul Halaman -->
             <div class="text-center mb-10" data-aos="fade-up" data-aos-duration="500">
-                <h2 class="text-5xl font-bold text-white">Status Pesanan</h2>
+                <h2 class="text-5xl font-bold text-black">Status Pesanan</h2>
                 <p class="text-lg text-gray-900 mt-2">Lihat status pesanan yang telah Anda buat.</p>
             </div>
 

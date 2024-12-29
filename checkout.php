@@ -21,7 +21,7 @@ foreach ($cartItems as $item) {
 ?>
 
 <main>
-    <div class="bg-gradient-to-br from-pink-50 via-purple-100 to-pink-300 min-h-screen py-20 pt-30">
+    <div class=" min-h-screen py-20 pt-40">
         <div class="container mx-auto px-6 lg:px-20">
             <div class="text-center mb-10">
                 <h2 class="text-5xl font-bold text-black">Checkout</h2>
@@ -66,22 +66,22 @@ foreach ($cartItems as $item) {
                         <div class="mb-4">
                             <label class="block text-gray-600 font-medium">Nama Lengkap</label>
                             <input type="text" name="name" required
-                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-purple-200">
+                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-yellow-200">
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-600 font-medium">Alamat Pengiriman</label>
                             <textarea name="address" required
-                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-purple-200"></textarea>
+                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-yellow-200"></textarea>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-600 font-medium">Nomor Telepon</label>
                             <input type="text" name="phone" required
-                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-purple-200">
+                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-yellow-200">
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-600 font-medium">Metode Pembayaran</label>
                             <select name="payment_method" required
-                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-purple-200">
+                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-yellow-200">
                                 <option value="bank_transfer">Transfer Bank</option>
                                 <option value="credit_card">Kartu Kredit</option>
                                 <option value="ewallet">E-Wallet</option>
@@ -89,7 +89,7 @@ foreach ($cartItems as $item) {
                             </select>
                         </div>
                         <button type="submit"
-                            class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:bg-purple-700 transition">
+                            class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:bg-yellow-700 transition">
                             Proses Checkout
                         </button>
                     </form>

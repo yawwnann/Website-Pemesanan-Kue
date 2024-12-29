@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Submit Button -->
         <div>
             <button type="submit"
-                class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-200">Update
+                class="w-full bg-yellow-500 text-white p-3 rounded-md hover:bg-yellow-600 transition duration-200">Update
                 Product</button>
         </div>
     </form>

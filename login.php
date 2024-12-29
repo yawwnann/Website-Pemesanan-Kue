@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <img src="img/toko.png" alt="Toko"
                         class="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-3/4 lg:w-1/2"
                         data-aos="zoom-in" data-aos-duration="1500">
-                    <h1 class="text-4xl font-bold text-white text-center mt-64 lg:mt-80" data-aos="fade-up">Toko Roti
+                    <h1 class="text-4xl font-bold text-white text-center mt-64 lg:mt-80" data-aos="fade-up">Bakery
                         Indonesia</h1>
                 </div>
 

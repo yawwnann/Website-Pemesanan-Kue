@@ -31,31 +31,54 @@ $orderItems = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main>
-    <div class="bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-800 min-h-screen py-20 pt-40">
-        <div class="container mx-auto px-6 lg:px-20">
+    <div class="min-h-screen ml-10 mr-10 py-20">
+        <div class="container mx-auto ml-60 mr-20 w-5/6">
             <!-- Judul Halaman -->
             <div class="text-center mb-10">
-                <h2 class="text-5xl font-bold text-black">Detail Pesanan</h2>
+                <h2 class="text-4xl font-semibold text-black">Detail Pesanan</h2>
                 <p class="text-lg text-gray-600 mt-2">Lihat detail pesanan ID <?= htmlspecialchars($order['id']) ?></p>
             </div>
 
             <!-- Detail Pesanan -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Informasi Pesanan</h3>
-                <p><strong>Nama Pelanggan:</strong> <?= htmlspecialchars($order['name']) ?></p>
-                <p><strong>Alamat Pengiriman:</strong> <?= htmlspecialchars($order['address']) ?></p>
-                <p><strong>Nomor Telepon:</strong> <?= htmlspecialchars($order['phone']) ?></p>
-                <p><strong>Metode Pembayaran:</strong> <?= ucfirst($order['payment_method']) ?></p>
-                <p><strong>Total Harga:</strong> Rp <?= number_format($order['total_price'], 0, ',', '.') ?></p>
-                <p><strong>Tanggal Pemesanan:</strong> <?= htmlspecialchars($order['created_at']) ?></p>
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Informasi Pesanan</h3>
+                <table class="w-full table-auto">
+                    <tbody>
+                        <tr>
+                            <td class="text-gray-700 font-semibold py-2">Nama Pelanggan:</td>
+                            <td class="text-gray-600 py-2"><?= htmlspecialchars($order['name']) ?></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700 font-semibold py-2">Alamat Pengiriman:</td>
+                            <td class="text-gray-600 py-2"><?= htmlspecialchars($order['address']) ?></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700 font-semibold py-2">Nomor Telepon:</td>
+                            <td class="text-gray-600 py-2"><?= htmlspecialchars($order['phone']) ?></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700 font-semibold py-2">Metode Pembayaran:</td>
+                            <td class="text-gray-600 py-2"><?= ucfirst($order['payment_method']) ?></td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700 font-semibold py-2">Total Harga:</td>
+                            <td class="text-gray-600 py-2">Rp <?= number_format($order['total_price'], 0, ',', '.') ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-gray-700 font-semibold py-2">Tanggal Pemesanan:</td>
+                            <td class="text-gray-600 py-2"><?= htmlspecialchars($order['created_at']) ?></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- Tabel Detail Barang -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-2xl font-bold text-gray-800 mb-4">Detail Barang</h3>
-                <table class="w-full border-collapse">
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Detail Barang</h3>
+                <table class="w-full table-auto border-collapse">
                     <thead>
-                        <tr class="bg-gray-100 text-gray-600 text-left">
+                        <tr class="text-left">
                             <th class="px-4 py-3">Nama Produk</th>
                             <th class="px-4 py-3">Jumlah</th>
                             <th class="px-4 py-3">Harga Satuan</th>
@@ -70,7 +93,7 @@ $orderItems = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
                             </tr>
                         <?php else: ?>
                             <?php foreach ($orderItems as $item): ?>
-                                <tr>
+                                <tr class="border-b border-gray-200">
                                     <td class="px-4 py-3"><?= htmlspecialchars($item['product_name']) ?></td>
                                     <td class="px-4 py-3"><?= $item['quantity'] ?></td>
                                     <td class="px-4 py-3">Rp <?= number_format($item['price'], 0, ',', '.') ?></td>
@@ -88,7 +111,6 @@ $orderItems = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
                         Cetak PDF
                     </a>
                 </div>
-
             </div>
         </div>
     </div>

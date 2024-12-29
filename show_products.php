@@ -89,7 +89,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="my-10 flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 lg:space-x-6"
                 data-aos="fade-left">
 
-                <!-- Search Bar -->
+                <!-- Ini Pencarian -->
                 <form method="GET" action="" class="flex items-center w-full lg:w-2/5">
                     <input type="text" name="search" placeholder="Cari produk..."
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-yellow-200"
@@ -100,15 +100,15 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </button>
                 </form>
 
-                <!-- Button to Toggle Filter and Sort -->
+
                 <div class="flex space-x-2">
-                    <!-- Filter Button -->
+                    <!-- Ini Filter -->
                     <button id="filterButton"
                         class="px-6 py-3 bg-yellow-900 text-white rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition">
                         Filter
                     </button>
 
-                    <!-- Sort Button -->
+                    <!-- Ini Short-->
                     <button id="sortButton"
                         class="px-6 py-3 bg-yellow-900 text-white rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition">
                         Urutkan
@@ -150,35 +150,27 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($products as $product): ?>
                         <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col items-start p-6 hover:scale-105 transition-all duration-300"
                             data-aos="fade-up" data-aos-duration="500">
-
-                            <!-- Product Image with fixed height and consistent styling -->
                             <img src="<?= htmlspecialchars($product['image']) ?>"
                                 alt="<?= htmlspecialchars($product['name']) ?>"
                                 class="w-full h-48 object-cover rounded-t-lg mb-4" data-aos="zoom-in" data-aos-duration="500">
 
                             <div class="flex flex-col justify-between w-full">
 
-                                <!-- Product Title (Centered) -->
                                 <h3 class="text-lg font-semibold text-gray-800 " data-aos="fade-up" data-aos-duration="500">
                                     <?= htmlspecialchars($product['name']) ?>
                                 </h3>
-
-                                <!-- Product Description (Centered and trimmed) -->
                                 <p class="text-sm text-gray-600 " data-aos="fade-up" data-aos-duration="500">
                                     <?= htmlspecialchars(substr($product['description'], 0, 80)) . (strlen($product['description']) > 80 ? '...' : '') ?>
                                 </p>
 
-                                <!-- Product Price and Add to Cart Button (Aligned at the bottom) -->
-                                <div class="mt-auto flex items-center justify-between w-full" data-aos="fade-up"
-                                    data-aos-duration="1400">
+                                <div class="mt-auto flex items-center justify-between w-full">
                                     <span class="text-lg font-bold text-yellow-800">
                                         Rp <?= number_format($product['price'], 0, ',', '.') ?>
                                     </span>
                                     <form method="POST" action="">
                                         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                                         <button type="submit"
-                                            class="bg-yellow-900 text-white text-sm px-4 py-2 rounded-md shadow hover:bg-yellow-950 transition"
-                                            data-aos="zoom-in" data-aos-duration="1500">
+                                            class="bg-yellow-900 text-white text-sm px-4 py-2 rounded-md shadow hover:bg-yellow-950 transition">
                                             Keranjang
                                         </button>
                                     </form>
