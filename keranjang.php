@@ -1,12 +1,19 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Mulai sesi hanya jika belum aktif
-}
+ob_start();  // Menangguhkan output sebelum session_start() atau header() dipanggil
+session_start(); // Memulai sesi jika belum dimulai
 include 'config/database.php';
 include 'header.php';
 
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
+    exit;
+}
+
+// Jika transaksi berhasil, hapus barang dari keranjang
+if (isset($_GET['transaction_status']) && $_GET['transaction_status'] == 'settlement') {
+    // Hapus barang di keranjang jika pembayaran berhasil
+    unset($_SESSION['cart']);
+    echo "<script>alert('Pembayaran berhasil! Keranjang Anda telah dikosongkan.'); window.location.href = 'keranjang.php';</script>";
     exit;
 }
 
@@ -22,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_cart'])) {
             $_SESSION['cart'][$productId]['quantity'] = $quantity;
         }
     }
-    header("Location: keranjang.php");
+    header("Location: keranjang.php");  // Pastikan ini setelah POST selesai
     exit;
 }
 
@@ -30,29 +37,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_cart'])) {
 if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['id'])) {
     $productId = $_GET['id'];
     unset($_SESSION['cart'][$productId]);
-    header("Location: keranjang.php");
+    header("Location: keranjang.php");  // Pastikan ini setelah penghapusan
     exit;
 }
 
-// Hitung total harga
+// Hitung total harga dan jumlah barang di keranjang
 $totalPrice = 0;
+$totalItems = 0; // Menyimpan jumlah total barang
 foreach ($cartItems as $item) {
     $totalPrice += $item['price'] * $item['quantity'];
+    $totalItems += $item['quantity']; // Tambahkan jumlah produk ke totalItems
 }
+
+// Menyimpan jumlah item di keranjang dalam sesi
+$_SESSION['cart_count'] = $totalItems;
 ?>
 
-<main class="bg-gradient-to-br from-yellow-100 via-yellow-500 to-yellow-900">
-    <div class=" min-h-screen mt-20 py-20 pt-30">
+<main>
+    <div class="min-h-screen mt-20 py-20 pt-30">
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Judul Halaman -->
-            <div class="text-center mb-10" data-aos="fade-up" data-aos-duration="1000">
-                <h2 class="text-5xl font-bold text-white">Keranjang Belanja</h2>
+            <div class="text-center mb-10" data-aos="fade-up" data-aos-duration="500">
+                <h2 class="text-5xl font-bold text-black">Keranjang Belanja</h2>
                 <p class="text-lg text-gray-900 mt-2">Kelola barang yang ingin Anda beli.</p>
             </div>
 
             <!-- Tabel Keranjang -->
             <form action="keranjang.php" method="POST">
-                <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-duration="500">
                     <div class="overflow-x-auto">
                         <table class="w-full border-collapse">
                             <thead>

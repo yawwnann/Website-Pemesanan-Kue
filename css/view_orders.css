@@ -1,0 +1,65 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  background-color: #ffffff;
+  box-shadow: 2px 0px 10px rgba(237, 199, 96, 0.1);
+  z-index: 50;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.content {
+  margin-left: 240px;
+  padding: 20px;
+  padding-right: 20px;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f59e0b;
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+td {
+  word-wrap: break-word;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 4%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 15%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 5%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 10%;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 5%;
+}

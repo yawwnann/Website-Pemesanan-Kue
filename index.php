@@ -1,20 +1,20 @@
-<?php include 'config/database.php';
-include 'header.php';
+<?php
 
+include 'header.php';
+include 'config/database.php';
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit;
 }
+
 ?>
 
 <link rel="stylesheet" href="css/tailwind.css">
 
 <main class="container mx-auto ">
-    <!-- Konten Utama -->
     <div
         class="min-h-screen px-6 py-10 flex items-center bg-gradient-to-br from-yellow-200 via-yellow-600 to-yellow-700">
         <div class="container mx-auto px-6 lg:px-20 py-10 flex flex-col lg:flex-row items-center">
-            <!-- Bagian Kiri: Teks dan Tombol -->
             <div class="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0" data-aos="fade-right">
                 <h1 class="text-4xl lg:text-6xl font-extrabold text-yellow-800 leading-tight">
                     Momen Manis, Dipanggang dengan Cinta
@@ -27,10 +27,8 @@ if (!isset($_SESSION['user'])) {
                     data-aos="zoom-in">
                     Belanja Sekarang
                 </a>
-
             </div>
 
-            <!-- Bagian Kanan: Gambar -->
             <div class="lg:w-1/2 flex justify-center relative" data-aos="fade-left">
                 <img src="img/kue1.png" alt="Kue dan Donat" class="w-full max-w-3xl relative z-10">
             </div>
@@ -40,7 +38,6 @@ if (!isset($_SESSION['user'])) {
     <div class="relative min-h-screen flex items-center justify-center"
         style="background: linear-gradient(to right, rgba(105, 75, 30, 0.8), rgba(226, 159, 83, 0.8)), url('img/bg-prof2.jpg'); background-size: cover; background-position: center;">
         <div class="container mx-auto  px-6 lg:px-20 py-8 flex flex-col lg:flex-row items-center lg:items-start">
-            <!-- Bagian Kiri -->
             <div class="lg:w-1/2 text-center lg:text-left space-y-4">
                 <h3 class="text-lg font-semibold text-yellow-50 uppercase" data-aos="fade-down">Kesenangan yang
                     Dipanggang dengan Cinta</h3>
@@ -62,7 +59,6 @@ if (!isset($_SESSION['user'])) {
 
     <div class="bg-yellow-50 py-16">
         <div class="container mx-auto px-6 lg:px-20 flex flex-wrap justify-center gap-8">
-            <!-- Card Diskon -->
             <div class="bg-yellow-600 text-white rounded-lg shadow-lg p-6 w-full lg:w-[45%] flex flex-col justify-between relative overflow-hidden"
                 data-aos="slide-right">
                 <div>
@@ -78,13 +74,11 @@ if (!isset($_SESSION['user'])) {
                     </a>
                 </div>
                 <p class="mt-4 text-sm italic opacity-80">*berbeda diskon di setiap toko</p>
-                <!-- Background Pattern -->
                 <div class="absolute bottom-0 right-0 w-20 h-20 bg-no-repeat bg-cover"
                     style="background-image: url('img/wave-pattern.png'); opacity: 0.3;">
                 </div>
             </div>
 
-            <!-- Card Tentang -->
             <div class="bg-yellow-600 text-white rounded-lg shadow-lg p-6 w-full lg:w-[45%] flex flex-col justify-between relative overflow-hidden"
                 data-aos="slide-left">
                 <div>
@@ -101,7 +95,6 @@ if (!isset($_SESSION['user'])) {
                         Ini Cerita Kami →
                     </a>
                 </div>
-                <!-- Background Pattern -->
                 <div class="absolute bottom-0 right-0 w-20 h-20 bg-no-repeat bg-cover"
                     style="background-image: url('img/wave-pattern.png'); opacity: 0.3;">
                 </div>
@@ -109,7 +102,6 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 
-    <!-- Bagian Pilih Favorit -->
     <div class="bg-yellow-50 ">
         <div class="container mx-auto px-6 lg:px-20">
             <div data-aos="fade-right">
@@ -117,9 +109,7 @@ if (!isset($_SESSION['user'])) {
                 <h1 class="text-4xl font-bold text-gray-800 mb-8">Produk Terlaris Kami</h1>
             </div>
 
-            <!-- Grid Produk (2 Gambar Atas, 2 Gambar Bawah) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                <!-- Kolom Gambar 1 -->
                 <div class="relative group overflow-hidden" data-aos="fade-right">
                     <img src="img/cakes.jpg" alt="Cakes"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
@@ -129,7 +119,6 @@ if (!isset($_SESSION['user'])) {
                     </div>
                 </div>
 
-                <!-- Kolom Gambar 2 -->
                 <div class="relative group overflow-hidden" data-aos="fade-down">
                     <img src="img/dry-cakes.jpg" alt="Dry Cakes"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
@@ -139,7 +128,6 @@ if (!isset($_SESSION['user'])) {
                     </div>
                 </div>
 
-                <!-- Kolom Gambar 3 -->
                 <div class="relative group overflow-hidden" data-aos="fade-up">
                     <img src="img/cookies.jpg" alt="Cookies"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
@@ -149,7 +137,6 @@ if (!isset($_SESSION['user'])) {
                     </div>
                 </div>
 
-                <!-- Kolom Gambar 4 -->
                 <div class="relative group overflow-hidden" data-aos="fade-left">
                     <img src="img/butter-cake.jpeg" alt="Butter Cake"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
@@ -162,10 +149,8 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 
-    <!-- Bagian Kartu -->
     <div class="bg-yellow-50 min-h-screen mt-20">
         <div class="container mx-auto px-6 lg:px-20">
-            <!-- Judul Bagian dan Tombol -->
             <div class="flex justify-between items-center mb-10" data-aos="fade-down">
                 <div>
                     <h3 class="text-lg font-semibold text-orange-600 uppercase">Temukan produk yang paling dicintai dan
@@ -178,7 +163,6 @@ if (!isset($_SESSION['user'])) {
                 </a>
             </div>
 
-            <!-- Slider Produk -->
             <div class="swiper mySwiper mx-auto" data-aos="fade-up">
                 <div class="swiper-wrapper">
                     <?php
@@ -186,12 +170,9 @@ if (!isset($_SESSION['user'])) {
                     $products = $query->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($products as $product): ?>
-                        <!-- Kartu dalam Slider -->
                         <div class="swiper-slide">
                             <div
                                 class="bg-white rounded-lg shadow-md p-2 overflow-hidden flex flex-col items-center w-full max-w-[300px] mx-auto transition-transform duration-300 transform hover:scale-105">
-                                <!-- Image with fixed height -->
-                                <!-- Product Image with fixed height and consistent styling -->
                                 <img src="<?= htmlspecialchars($product['image']) ?>"
                                     alt="<?= htmlspecialchars($product['name']) ?>"
                                     class="w-full h-48 object-cover rounded-t-lg mb-4" data-aos="zoom-in"
@@ -199,13 +180,11 @@ if (!isset($_SESSION['user'])) {
 
                                 <div class="flex flex-col justify-between w-full">
 
-                                    <!-- Product Title (Centered) -->
                                     <h3 class="text-lg font-semibold text-gray-800 " data-aos="fade-up"
                                         data-aos-duration="1000">
                                         <?= htmlspecialchars($product['name']) ?>
                                     </h3>
 
-                                    <!-- Product Description (Centered and trimmed) -->
                                     <p class="text-sm text-gray-600 " data-aos="fade-up" data-aos-duration="1000">
                                         <?= htmlspecialchars(substr($product['description'], 0, 80)) . (strlen($product['description']) > 80 ? '...' : '') ?>
                                     </p>
@@ -229,19 +208,15 @@ if (!isset($_SESSION['user'])) {
         </div>
     </div>
 
-    <!-- Testimoni Slider -->
     <div class="bg-yellow-50 py-2 mb-10">
         <div class="container mx-auto px-6 lg:px-20">
-            <!-- Heading Section -->
             <div class="mb-8 " data-aos="slide-right">
                 <h3 class="text-lg font-semibold text-orange-600 uppercase">Testimoni</h3>
                 <h1 class="text-4xl font-bold text-gray-800 mt-2">Penilaian dari para pelanggan</h1>
             </div>
 
-            <!-- Swiper Container -->
             <div class="swiper testimoniSwiper" data-aos="slide-left">
                 <div class="swiper-wrapper">
-                    <!-- Card Testimoni -->
                     <div class="swiper-slide">
                         <div
                             class="bg-white shadow-md rounded-lg p-6 max-w-sm min-h-[200px] flex flex-col justify-between text-left">
@@ -287,7 +262,6 @@ if (!isset($_SESSION['user'])) {
                         </div>
                     </div>
                 </div>
-                <!-- Pagination -->
                 <div class="swiper-pagination"></div>
             </div>
         </div>

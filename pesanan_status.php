@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 include 'config/database.php';
 include 'header.php';
 
+// Pastikan pengguna sudah login
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit;
@@ -13,13 +14,23 @@ if (!isset($_SESSION['user'])) {
 // Ambil id user yang sedang login
 $userId = $_SESSION['user']['id'];
 
-// Query untuk mendapatkan data pesanan berdasarkan user_id
-$query = $pdo->prepare("SELECT * FROM orders WHERE user_id = ?");
-$query->execute([$userId]);
-$orders = $query->fetchAll(PDO::FETCH_ASSOC);
+// Ambil order_id dari URL untuk melihat status pesanan tertentu
+$orderId = isset($_GET['order_id']) ? $_GET['order_id'] : null;
+
+if ($orderId) {
+    // Jika ada order_id, hanya tampilkan pesanan yang sesuai
+    $query = $pdo->prepare("SELECT * FROM orders WHERE id = ? AND user_id = ?");
+    $query->execute([$orderId, $userId]);
+    $orders = $query->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Jika tidak ada order_id, tampilkan semua pesanan
+    $query = $pdo->prepare("SELECT * FROM orders WHERE user_id = ?");
+    $query->execute([$userId]);
+    $orders = $query->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
-<main class="bg-gradient-to-br from-yellow-100 via-yellow-500 to-yellow-900">
+<main>
     <div class="min-h-screen mt-20 py-20 pt-30">
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Judul Halaman -->
@@ -38,14 +49,13 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                                 <th class="px-4 py-3">Nama</th>
                                 <th class="px-4 py-3">Alamat</th>
                                 <th class="px-4 py-3">Total Harga</th>
-                                <th class="px-4 py-3">Metode Pembayaran</th>
                                 <th class="px-4 py-3">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (empty($orders)): ?>
                                 <tr>
-                                    <td colspan="6" class="text-center text-gray-600 py-4" data-aos="fade-in"
+                                    <td colspan="5" class="text-center text-gray-600 py-4" data-aos="fade-in"
                                         data-aos-delay="200">Anda belum memiliki pesanan.</td>
                                 </tr>
                             <?php else: ?>
@@ -55,7 +65,6 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                                         <td class="px-4 py-3"><?= htmlspecialchars($order['name']) ?></td>
                                         <td class="px-4 py-3"><?= htmlspecialchars($order['address']) ?></td>
                                         <td class="px-4 py-3">Rp <?= number_format($order['total_price'], 0, ',', '.') ?></td>
-                                        <td class="px-4 py-3"><?= ucfirst(htmlspecialchars($order['payment_method'])) ?></td>
                                         <td class="px-4 py-3"><?= ucfirst(htmlspecialchars($order['status'])) ?></td>
                                     </tr>
                                 <?php endforeach; ?>

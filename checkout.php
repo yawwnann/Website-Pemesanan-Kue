@@ -3,8 +3,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include 'config/database.php';
+include 'config/midtrans_config.php';
 include 'header.php';
 
+// Pastikan pengguna sudah login
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit;
@@ -21,7 +23,7 @@ foreach ($cartItems as $item) {
 ?>
 
 <main>
-    <div class=" min-h-screen py-20 pt-40">
+    <div class="min-h-screen py-20 pt-40">
         <div class="container mx-auto px-6 lg:px-20">
             <div class="text-center mb-10">
                 <h2 class="text-5xl font-bold text-black">Checkout</h2>
@@ -62,7 +64,7 @@ foreach ($cartItems as $item) {
                 <!-- Form Informasi Pengiriman -->
                 <div class="bg-white rounded-lg shadow-md p-6">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Informasi Pengiriman</h3>
-                    <form action="process_checkout.php" method="POST">
+                    <form id="checkoutForm">
                         <div class="mb-4">
                             <label class="block text-gray-600 font-medium">Nama Lengkap</label>
                             <input type="text" name="name" required
@@ -78,17 +80,8 @@ foreach ($cartItems as $item) {
                             <input type="text" name="phone" required
                                 class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-yellow-200">
                         </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-600 font-medium">Metode Pembayaran</label>
-                            <select name="payment_method" required
-                                class="w-full border border-gray-300 p-3 rounded-lg focus:ring focus:ring-yellow-200">
-                                <option value="bank_transfer">Transfer Bank</option>
-                                <option value="credit_card">Kartu Kredit</option>
-                                <option value="ewallet">E-Wallet</option>
-                                <option value="cod">Bayar di Tempat (COD)</option>
-                            </select>
-                        </div>
-                        <button type="submit"
+
+                        <button type="button" id="payButton"
                             class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold shadow-lg hover:bg-yellow-700 transition">
                             Proses Checkout
                         </button>
@@ -98,5 +91,8 @@ foreach ($cartItems as $item) {
         </div>
     </div>
 </main>
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-PEVLiowZwZNrnJPX"></script>
+<script src="js/checkout.js"></script>
 
 <?php include 'footer.php'; ?>

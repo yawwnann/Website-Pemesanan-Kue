@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    session_start(); // Memulai sesi jika belum dimulai
 }
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
@@ -10,6 +10,15 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 
 include 'config/database.php';
 include 'header_admin.php';
+
+// Menangani filter status
+$statusFilter = isset($_GET['status']) ? $_GET['status'] : '';
+
+// Membuat query berdasarkan filter status
+$queryStr = "SELECT * FROM orders";
+if ($statusFilter && $statusFilter !== 'all') {
+    $queryStr .= " WHERE status = :status";
+}
 
 // Default order by and direction
 $orderBy = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'created_at';
@@ -21,10 +30,13 @@ if (!in_array($orderBy, $allowedColumns)) {
     $orderBy = 'created_at';
 }
 
-// Get order data from orders table with sorting
-$stmt = $pdo->prepare("SELECT * FROM orders ORDER BY $orderBy $orderDir");
-$stmt->execute();
-$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$query = $pdo->prepare($queryStr);
+if ($statusFilter && $statusFilter !== 'all') {
+    $query->bindParam(':status', $statusFilter, PDO::PARAM_STR);
+}
+
+$query->execute();
+$orders = $query->fetchAll(PDO::FETCH_ASSOC);
 
 // Handle status change for orders
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
@@ -40,119 +52,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     exit;
 }
 
+// Handle order deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_order'])) {
+    $orderId = $_POST['order_id'];
+
+    try {
+        // Start transaction
+        $pdo->beginTransaction();
+
+        // First, delete related items in order_items
+        $deleteItemsStmt = $pdo->prepare("DELETE FROM order_items WHERE order_id = ?");
+        $deleteItemsStmt->execute([$orderId]);
+
+        // Then, delete the order
+        $deleteOrderStmt = $pdo->prepare("DELETE FROM orders WHERE id = ?");
+        $deleteOrderStmt->execute([$orderId]);
+
+        // Commit the transaction
+        $pdo->commit();
+
+        // Redirect after deletion
+        header("Location: view_orders.php");
+        exit;
+    } catch (Exception $e) {
+        // Rollback the transaction in case of error
+        $pdo->rollBack();
+        echo "<script>alert('Terjadi kesalahan saat menghapus pesanan.'); window.location.href = 'view_orders.php';</script>";
+        exit;
+    }
+}
+
 function sortingLink($column, $currentOrderBy, $currentOrderDir)
 {
     $nextOrderDir = ($currentOrderBy === $column && $currentOrderDir === 'asc') ? 'desc' : 'asc';
     return "?sort_by=$column&sort_dir=$nextOrderDir";
 }
 ?>
-<style>
-    /* Sidebar styles */
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 240px;
-        /* Sidebar width */
-        background-color: #ffffff;
-        box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
-        z-index: 50;
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-
-    /* Content area */
-    .content {
-        margin-left: 240px;
-        /* Sidebar width */
-        padding: 20px;
-        padding-right: 20px;
-        /* Add padding-right to create space on the right */
-    }
-
-    /* Table adjustments */
-    table {
-        width: 80%;
-        border-collapse: collapse;
-    }
-
-    th,
-    td {
-        padding: 8px 12px;
-        /* Reduced padding for more compactness */
-        text-align: left;
-    }
-
-    th {
-        background-color: #f1f1f1;
-    }
-
-    td {
-        word-wrap: break-word;
-    }
-
-    /* Specific column widths */
-    th:nth-child(1),
-    td:nth-child(1) {
-        /* ID column */
-        width: 4%;
-    }
-
-    th:nth-child(2),
-    td:nth-child(2) {
-        /* Name column */
-        width: 15%;
-    }
-
-    th:nth-child(3),
-    td:nth-child(3) {
-        /* Total Harga column */
-        width: 5%;
-    }
-
-    th:nth-child(4),
-    td:nth-child(4) {
-        /* Status column */
-        width: 10%;
-    }
-
-    th:nth-child(5),
-    td:nth-child(5) {
-        /* Actions column */
-        width: 5%;
-    }
-</style>
+<link rel="stylesheet" href="css/view_orders.css">
 <main>
     <div class="container mx-auto mt-10 px-10" style="margin-left: 240px; padding-right: 20px;">
         <!-- Tabel Daftar Pesanan -->
-        <div class="bg-white rounded-lg shadow-md w-5/6 p-6">
-            <div class="text-center mb-6">
-                <h2 class="text-5xl font-bold text-black">Daftar Pesanan</h2>
-                <p class="text-lg text-gray-600 mt-2">Lihat dan ubah status pesanan yang telah dibuat oleh pelanggan.
-                </p>
+        <div class="w-5/6 p-6">
+            <div class="text-center mb-10">
+                <h2 class="text-5xl font-bold text-left text-black">Daftar Pesanan</h2>
+                <p class="text-lg text-left text-gray-600 mt-2">Lihat dan ubah status pesanan yang telah dibuat oleh
+                    pelanggan.</p>
             </div>
 
-            <table class="w-full border-collapse">
+            <!-- Filter Dropdown and Print Button (beside each other) -->
+            <div class="mb-6 flex justify-between items-center">
+                <!-- Filter by Status -->
+                <form action="" method="GET" class="flex items-center space-x-2">
+                    <select name="status" class="border border-gray-300 p-2 rounded-md">
+                        <option value="all" <?= empty($statusFilter) || $statusFilter === 'all' ? 'selected' : '' ?>>
+                            Tampilkan Semua</option>
+                        <option value="pending" <?= $statusFilter === 'pending' ? 'selected' : '' ?>>Pending</option>
+                        <option value="shipped" <?= $statusFilter === 'shipped' ? 'selected' : '' ?>>Shipped</option>
+                        <option value="delivered" <?= $statusFilter === 'delivered' ? 'selected' : '' ?>>Delivered</option>
+                    </select>
+                    <button type="submit"
+                        class="bg-yellow-600 text-white px-6 py-2 rounded-md shadow-md hover:bg-yellow-900 transition duration-300">Filter
+                        Status</button>
+                </form>
+
+                <!-- Print Button -->
+                <a href="generate_all_orders_pdf.php"
+                    class="bg-yellow-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-900 transition ml-4">
+                    Cetak Semua Pesanan
+                </a>
+            </div>
+
+            <table class="w-full boborder-collapse">
                 <thead>
-                    <tr class="bg-gray-100 text-gray-600 text-left">
-                        <th class="px-4 py-3">
+                    <tr class="text-left">
+                        <th class="px-4 py-3 bg-yellow-600 text-white rounded-l-lg">
                             <a href="<?= sortingLink('id', $orderBy, $orderDir) ?>" class="hover:underline">
                                 ID Pesanan
                                 <?= $orderBy === 'id' ? ($orderDir === 'asc' ? '▲' : '▼') : '' ?>
                             </a>
                         </th>
-                        <th class="px-4 py-3">Nama Pelanggan</th>
-                        <th class="px-4 py-3">
+                        <th class="px-4 py-3 bg-yellow-600 text-white">
+                            Nama Pelanggan
+                        </th>
+                        <th class="px-4 py-3 bg-yellow-600 text-white">
                             <a href="<?= sortingLink('total_price', $orderBy, $orderDir) ?>" class="hover:underline">
                                 Total Harga
                                 <?= $orderBy === 'total_price' ? ($orderDir === 'asc' ? '▲' : '▼') : '' ?>
                             </a>
                         </th>
-                        <th class="px-4 py-3">Status</th>
-                        <th class="px-4 py-3">Aksi</th>
+                        <th class="px-4 py-3 bg-yellow-600 text-white">
+                            Status
+                        </th>
+                        <th class="px-4 py-3 bg-yellow-600 text-white rounded-r-lg">Aksi</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <?php if (empty($orders)): ?>
                         <tr>
@@ -186,19 +180,16 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
                                 <td class="px-4 py-3">
                                     <a href="order_details.php?id=<?= $order['id'] ?>"
                                         class="text-yellow-500 hover:underline">Lihat Detail</a>
+                                    <!-- Form to delete order -->
+                                    <form action="view_orders.php" method="POST" class="mt-2 inline-block">
+                                        <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </tbody>
             </table>
-        </div>
-
-        <div class="text-center mt-10">
-            <a href="generate_all_orders_pdf.php"
-                class="bg-yellow-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">
-                Cetak Semua Pesanan
-            </a>
         </div>
     </div>
 </main>

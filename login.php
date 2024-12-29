@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirect berdasarkan peran pengguna
         if ($user['role'] === 'admin') {
-            header('Location: products.php');
+            header('Location: statistik.php');
         } else {
             header('Location: index.php');
         }

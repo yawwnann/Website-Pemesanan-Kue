@@ -6,4 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Midtrans\\' => array($vendorDir . '/midtrans/midtrans-php/Midtrans'),
 );

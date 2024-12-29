@@ -1,4 +1,5 @@
 <?php
+
 include 'config/database.php';
 include 'header.php';
 
@@ -15,7 +16,8 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-$showModal = false;
+$showMessage = false;
+$addedProductName = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $productId = $_POST['product_id'];
@@ -35,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         $found = false;
         foreach ($_SESSION['cart'] as &$item) {
             if ($item['id'] === $cartItem['id']) {
+
                 $item['quantity']++;
                 $found = true;
                 break;
@@ -45,7 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
             $_SESSION['cart'][] = $cartItem;
         }
 
-        $showModal = true;
+        // Mengirimkan nama produk yang berhasil ditambahkan ke keranjang jika permintaan AJAX
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            echo htmlspecialchars($product['name']);
+            exit;
+        }
+
+        $showMessage = true;
         $addedProductName = $product['name'];
     }
 }
@@ -54,17 +63,15 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 $sortBy = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
 $categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
 
-// Menyusun query untuk pencarian dan pengurutan
+// Query untuk pencarian dan pengurutan produk
 $query = "SELECT * FROM products WHERE name LIKE :search";
-$params = ['search' => '%' . $search . '%']; // Parameter pencarian
+$params = ['search' => '%' . $search . '%'];
 
-// Menambahkan filter kategori jika ada
 if ($categoryFilter) {
     $query .= " AND category = :category";
     $params['category'] = $categoryFilter;
 }
 
-// Menambahkan pengurutan berdasarkan pilihan
 if (!empty($sortBy)) {
     if ($sortBy == 'name_asc') {
         $query .= " ORDER BY name ASC";
@@ -83,35 +90,33 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main>
-    <div class="bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-600 min-h-screen py-20">
+    <div class="min-h-screen py-20">
         <div class="container mx-auto px-6 lg:px-20">
             <!-- Search Bar, Filter, and Sort -->
             <div class="my-10 flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 lg:space-x-6"
                 data-aos="fade-left">
-
-                <!-- Ini Pencarian -->
-                <form method="GET" action="" class="flex items-center w-full lg:w-2/5">
+                <form method="GET" action="" class="flex items-center w-full lg:w-2/5 space-x-2">
                     <input type="text" name="search" placeholder="Cari produk..."
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-yellow-200"
                         value="<?= htmlspecialchars($search) ?>">
                     <button type="submit"
-                        class="ml-4 px-6 py-3 bg-yellow-900 text-white rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition">
-                        Cari
+                        class="flex items-center px-6 py-3 bg-yellow-900 text-white rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition">
+                        <i class="fas fa-search"></i> <!-- Search Icon inside button -->
+                        <span>Cari</span>
                     </button>
                 </form>
 
-
                 <div class="flex space-x-2">
-                    <!-- Ini Filter -->
+                    <!-- Filter -->
                     <button id="filterButton"
                         class="px-6 py-3 bg-yellow-900 text-white rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition">
-                        Filter
+                        <i class="fas fa-filter mr-2"></i> Filter
                     </button>
 
-                    <!-- Ini Short-->
+                    <!-- Sort -->
                     <button id="sortButton"
                         class="px-6 py-3 bg-yellow-900 text-white rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition">
-                        Urutkan
+                        <i class="fas fa-sort mr-2"></i> Urutkan
                     </button>
                 </div>
             </div>
@@ -167,45 +172,52 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <span class="text-lg font-bold text-yellow-800">
                                         Rp <?= number_format($product['price'], 0, ',', '.') ?>
                                     </span>
-                                    <form method="POST" action="">
-                                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                                        <button type="submit"
-                                            class="bg-yellow-900 text-white text-sm px-4 py-2 rounded-md shadow hover:bg-yellow-950 transition">
-                                            Keranjang
-                                        </button>
-                                    </form>
+                                    <button type="button" onclick="addToCart(<?= $product['id'] ?>)"
+                                        class="bg-yellow-900 text-white text-sm px-4 py-2 rounded-md shadow hover:bg-yellow-950 transition">
+                                        <i class="fas fa-cart-plus"></i> Keranjang
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
+
+            <!-- Pesan Berhasil Ditambahkan -->
+            <?php if ($showMessage): ?>
+                <div id="successMessage" class="bg-green-200 p-4 rounded-lg mt-4">
+                    <p class="text-green-800">Produk <strong><?= htmlspecialchars($addedProductName) ?></strong> telah
+                        berhasil ditambahkan ke keranjang.</p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </main>
 
-<!-- Modal Produk Ditambahkan -->
-<?php if ($showModal): ?>
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center" data-aos="fade-up"
-        data-aos-duration="500">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Berhasil Ditambahkan!</h2>
-            <p class="text-gray-600">Produk <strong><?= htmlspecialchars($addedProductName) ?></strong> telah
-                ditambahkan ke keranjang.</p>
-            <button onclick="closeModal()"
-                class="mt-6 bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition">
-                Tutup
-            </button>
-        </div>
-    </div>
-    <script>
-        function closeModal() {
-            document.getElementById('modal').remove();
-        }
-    </script>
-<?php endif; ?>
-
 <?php include 'footer.php'; ?>
+
+<script>
+    // Fungsi untuk menambahkan produk ke keranjang
+    function addToCart(productId) {
+        const formData=new FormData();
+        formData.append('product_id',productId);
+
+        fetch('',{
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(data => {
+                if(data) {
+                    // Tampilkan pesan bahwa produk telah berhasil ditambahkan ke keranjang
+                    const successMessage=document.getElementById('successMessage');
+                    successMessage.style.display='block';
+                    successMessage.querySelector('p').textContent='Produk '+data+' telah berhasil ditambahkan ke keranjang.';
+                }
+            })
+            .catch(error => console.error('Error:',error));
+    }
+</script>
 
 <script>
     AOS.init({

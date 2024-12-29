@@ -53,7 +53,6 @@ $html = '
     <p><strong>Nama Pelanggan:</strong> ' . htmlspecialchars($order['name']) . '</p>
     <p><strong>Alamat Pengiriman:</strong> ' . htmlspecialchars($order['address']) . '</p>
     <p><strong>Nomor Telepon:</strong> ' . htmlspecialchars($order['phone']) . '</p>
-    <p><strong>Metode Pembayaran:</strong> ' . ucfirst($order['payment_method']) . '</p>
     <p><strong>Total Harga:</strong> Rp ' . number_format($order['total_price'], 0, ',', '.') . '</p>
     <p><strong>Tanggal Pemesanan:</strong> ' . htmlspecialchars($order['created_at']) . '</p>
 ';

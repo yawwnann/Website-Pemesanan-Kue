@@ -1,9 +1,8 @@
 <?php
-
+ob_start(); // Menangguhkan output
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    session_start(); // Memulai sesi jika belum dimulai
 }
-
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -20,6 +19,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Box Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <!-- Animasi -->
@@ -28,6 +29,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Snap Midtrans -->
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="SB-Mid-client-PEVLiowZwZNrnJPX"></script>
 
     <style>
         .underline-animation {
@@ -123,10 +128,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>
                     </span>
 
-
+                    <!-- Keranjang dengan indikator jumlah item -->
                     <a href="keranjang.php"
-                        class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
+                        class="relative text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
                         <i class="bx bx-cart-alt text-2xl"></i>
+                        <?php if (isset($_SESSION['cart_count']) && $_SESSION['cart_count'] > 0): ?>
+                            <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                                <?= $_SESSION['cart_count'] ?>
+                            </span>
+                        <?php endif; ?>
                     </a>
 
                     <!-- Logout Button -->
@@ -190,3 +200,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 </body>
 
 </html>
+
+<?php
+ob_end_flush(); // Mengirimkan output yang tertunda
+?>

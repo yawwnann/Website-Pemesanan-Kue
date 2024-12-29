@@ -1,41 +1,42 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Mulai sesi hanya jika belum aktif
+    session_start();
 }
 include 'config/database.php';
-
-// Pastikan keranjang tidak kosong
-if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-    echo "<script>alert('Keranjang Anda kosong!'); window.location.href = 'keranjang.php';</script>";
-    exit;
-}
+include 'config/midtrans_config.php';
 
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['user'])) {
-    echo "<script>alert('Silakan login terlebih dahulu.'); window.location.href = 'login.php';</script>";
+    header('Location: login.php');
     exit;
 }
 
-// Ambil data dari form
-$name = $_POST['name'];
-$address = $_POST['address'];
-$phone = $_POST['phone'];
-$paymentMethod = $_POST['payment_method'];
+// Ambil data dari keranjang
+$cartItems = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
-// Ambil ID pengguna yang sedang login
-$userId = $_SESSION['user']['id'];
-
-// Ambil data keranjang
-$cartItems = $_SESSION['cart'];
+// Hitung total harga
 $totalPrice = 0;
 foreach ($cartItems as $item) {
     $totalPrice += $item['price'] * $item['quantity'];
 }
 
+// Ambil data dari form
+if (isset($_POST['name'], $_POST['address'], $_POST['phone'])) {
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+} else {
+    echo "<script>alert('Data tidak lengkap. Silakan lengkapi informasi pengiriman.'); window.location.href = 'checkout.php';</script>";
+    exit;
+}
+
+// Ambil ID pengguna yang sedang login
+$userId = $_SESSION['user']['id'];
+
 // Simpan data pesanan ke database
-$stmt = $pdo->prepare("INSERT INTO orders (user_id, name, address, phone, payment_method, total_price, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-$stmt->execute([$userId, $name, $address, $phone, $paymentMethod, $totalPrice, 'pending']);
-$orderId = $pdo->lastInsertId();  // Ambil ID pesanan yang baru saja dimasukkan
+$stmt = $pdo->prepare("INSERT INTO orders (user_id, name, address, phone, total_price, status) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->execute([$userId, $name, $address, $phone, $totalPrice, 'pending']);
+$orderId = $pdo->lastInsertId();
 
 // Simpan detail pesanan
 foreach ($cartItems as $item) {
@@ -43,9 +44,53 @@ foreach ($cartItems as $item) {
     $stmt->execute([$orderId, $item['id'], $item['quantity'], $item['price']]);
 }
 
-// Hapus keranjang setelah pesanan diproses
-unset($_SESSION['cart']);
+// Persiapkan data transaksi untuk Midtrans
+$transaction_details = [
+    'order_id' => 'ORDER-' . $orderId,
+    'gross_amount' => $totalPrice,
+];
 
-// Tampilkan pesan sukses dan arahkan ke halaman utama
-echo "<script>alert('Pesanan Anda berhasil diproses!'); window.location.href = 'index.php';</script>";
+$item_details = [];
+foreach ($cartItems as $item) {
+    $item_details[] = [
+        'id' => $item['id'],
+        'price' => $item['price'],
+        'quantity' => $item['quantity'],
+        'name' => $item['name'],
+    ];
+}
+
+$customer_details = [
+    'first_name' => $name,
+    'email' => $_SESSION['user']['email'],
+    'phone' => $phone,
+    'shipping_address' => [
+        'address' => $address,
+        'city' => 'Yogyakarta',
+        'postal_code' => '12345',
+        'country_code' => 'IDN',
+    ],
+];
+
+// Data transaksi untuk Midtrans
+$transaction_data = [
+    'transaction_details' => $transaction_details,
+    'item_details' => $item_details,
+    'customer_details' => $customer_details,
+    'return_url' => 'https://d4d7-2001-448a-4041-c894-9d84-b162-3e58-7101.ngrok-free.app/Website-Pemesanan-Kue/show_products.php'
+];
+
+try {
+    // Menggunakan Midtrans Snap untuk mendapatkan token pembayaran
+    $snapToken = \Midtrans\Snap::getSnapToken($transaction_data);
+
+    // Kirimkan snap token kepada frontend
+    echo json_encode(['snap_token' => $snapToken]);
+
+
+} catch (Exception $e) {
+    // Jika terjadi kesalahan dalam proses pembayaran, tampilkan pesan error
+    echo "<script>alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.'); window.location.href = 'keranjang.php';</script>";
+    exit;
+}
 ?>

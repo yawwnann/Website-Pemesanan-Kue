@@ -56,10 +56,10 @@ $orderItems = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
                             <td class="text-gray-700 font-semibold py-2">Nomor Telepon:</td>
                             <td class="text-gray-600 py-2"><?= htmlspecialchars($order['phone']) ?></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="text-gray-700 font-semibold py-2">Metode Pembayaran:</td>
                             <td class="text-gray-600 py-2"><?= ucfirst($order['payment_method']) ?></td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td class="text-gray-700 font-semibold py-2">Total Harga:</td>
                             <td class="text-gray-600 py-2">Rp <?= number_format($order['total_price'], 0, ',', '.') ?>

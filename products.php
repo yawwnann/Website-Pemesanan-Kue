@@ -2,10 +2,10 @@
 include 'config/database.php';
 include 'header_admin.php';
 
-// Menangani filter kategori
+
 $categoryFilter = isset($_GET['category']) ? $_GET['category'] : '';
 
-// Membuat query berdasarkan filter kategori
+
 $queryStr = "SELECT * FROM products";
 if ($categoryFilter) {
     $queryStr .= " WHERE category = :category";
@@ -20,21 +20,13 @@ $query->execute();
 $products = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Produk</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/tailwind.css">
-    <style>
-        .content {
-            margin-left: 240px;
-            padding: 20px;
-        }
-    </style>
+<style>
+    .content {
+        margin-left: 240px;
+        padding: 20px;
+    }
+</style>
 </head>
 
 <body class="bg-yellow-50">
@@ -59,45 +51,47 @@ $products = $query->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
 
-            <!-- Tabel untuk produk -->
-            <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
-                <table class="min-w-full table-auto border-collapse">
-                    <thead>
-                        <tr class="bg-gray-100 text-gray-600 text-left">
-                            <th class="px-6 py-3 border-b border-gray-300">Gambar</th>
-                            <th class="px-6 py-3 border-b border-gray-300">Nama</th>
-                            <th class="px-6 py-3 border-b border-gray-300">Harga</th>
-                            <th class="px-6 py-3 border-b border-gray-300">Deskripsi</th>
-                            <th class="px-6 py-3 border-b border-gray-300 text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($products as $product): ?>
-                            <tr class="border-b border-gray-200 hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <img src="<?= htmlspecialchars($product['image']) ?>"
-                                        alt="<?= htmlspecialchars($product['name']) ?>"
-                                        class="w-16 h-16 object-cover rounded-lg">
-                                </td>
-                                <td class="px-6 py-4"><?= htmlspecialchars($product['name']) ?></td>
-                                <td class="px-6 py-4">Rp <?= number_format($product['price'], 0, ',', '.') ?></td>
-                                <td class="px-6 py-4"><?= htmlspecialchars($product['description']) ?></td>
-                                <td class="px-6 py-4 text-center">
-                                    <a href="edit_product.php?id=<?= $product['id'] ?>"
-                                        class="text-blue-500 hover:text-blue-700 transition duration-200">Edit</a>
-                                    <span class="mx-2">|</span>
-                                    <a href="delete_product.php?id=<?= $product['id'] ?>"
-                                        class="text-red-500 hover:text-red-700 transition duration-200"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+            <!-- Cards Products -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <?php foreach ($products as $product): ?>
+                    <?php
+                    // Membatasi deskripsi menjadi 20 kata
+                    $description = htmlspecialchars($product['description']);
+                    $descriptionWords = explode(' ', $description);
+                    $limitedDescription = implode(' ', array_slice($descriptionWords, 0, 20));
+                    if (count($descriptionWords) > 20) {
+                        $limitedDescription .= '...';
+                    }
+                    ?>
+                    <div class="bg-white p-3 rounded-lg shadow-lg hover:shadow-xl transition duration-300 group"
+                        data-aos="fade-up" data-aos-duration="500">
+                        <img src="<?= htmlspecialchars($product['image']) ?>"
+                            alt="<?= htmlspecialchars($product['name']) ?>"
+                            class="w-full h-48 object-cover rounded-lg mb-4 transition duration-300 group-hover:scale-105">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2"><?= htmlspecialchars($product['name']) ?></h3>
+                        <p class="text-lg font-bold text-gray-700 mb-2">Rp
+                            <?= number_format($product['price'], 0, ',', '.') ?>
+                        </p>
+                        <p class="text-sm text-gray-600 mb-4"><?= $limitedDescription ?></p>
+                        <div class="flex justify-between items-center mt-4">
+                            <a href="edit_product.php?id=<?= $product['id'] ?>"
+                                class="bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-blue-600 transition duration-300">Edit</a>
+                            <a href="delete_product.php?id=<?= $product['id'] ?>"
+                                class="bg-red-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-600 transition duration-300"
+                                onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
 
+    <script>
+        AOS.init({
+            duration: 500,
+            once: true,
+        });
+    </script>
 </body>
 
 </html>
