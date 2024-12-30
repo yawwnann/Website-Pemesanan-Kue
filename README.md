@@ -33,4 +33,52 @@ Website Pemesanan Kue adalah platform berbasis web yang memungkinkan pengguna un
 - XAMPP atau server lokal untuk pengembangan (opsional)
 - Composer (untuk manajemen dependensi)
 
+## Dokumentasi Gambar
 
+### **Bagian User**
+Berikut adalah tampilan halaman untuk pengguna:
+
+- **Keranjang User**
+  ![Keranjang User](img/Keranjang_user.png)
+
+- **Checkout User**
+  ![Checkout User](img/checkout_user.png)
+
+- **Detail Pesanan User**
+  ![Detail Pesanan User](img/detail_pesanan_user.png)
+
+- **Status Pemesanan User**
+  ![Status Pemesanan User](img/status_pemesanan_user.png)
+
+- **Lokasi User**
+  ![Lokasi User](img/lokasi_user.png)
+
+- **Product Item User**
+  ![Product Item User](img/product_item_user.png)
+
+### **Bagian Admin**
+Berikut adalah tampilan halaman untuk admin:
+
+- **Login Admin**
+  ![Login Admin](img/Login.png)
+
+- **Tambah Pesanan Admin**
+  ![Tambah Pesanan Admin](img/Tambah_pesanan_admin.png)
+
+- **Detail Pesanan Admin**
+  ![Detail Pesanan Admin](img/detail_pesanan_admin.png)
+
+- **Daftar Pesanan Admin**
+  ![Daftar Pesanan Admin](img/Daftar_pesanan_admin.png)
+
+- **Statistik Admin**
+  ![Statistik Admin](img/Statistik_admin.png)
+
+- **Midtrans Integration Admin**
+  ![Midtrans Integration Admin](img/Midtrans_user.png)
+
+## Kontribusi
+Jika Anda ingin berkontribusi dalam proyek ini, silakan fork repository ini dan kirim pull request dengan perubahan Anda. Pastikan untuk mengikuti pedoman kontribusi yang telah ditentukan.
+
+## Lisensi
+Proyek ini dilisensikan di bawah lisensi MIT. Anda bebas untuk menggunakan dan memodifikasi kode ini sesuai kebutuhan Anda.
