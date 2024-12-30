@@ -37,13 +37,18 @@ Website Pemesanan Kue adalah platform berbasis web yang memungkinkan pengguna un
 
 ### **Bagian User**
 Berikut adalah tampilan halaman untuk pengguna:
-
+- **Dashboard User**
+  ![Dashboard User](img/Dashboard_user.png)
+  
 - **Keranjang User**
   ![Keranjang User](img/Keranjang_user.png)
 
 - **Checkout User**
   ![Checkout User](img/checkout_user.png)
-
+  
+- **Midtrans Integration Admin**
+  ![Midtrans Integration Admin](img/Midtrans_user.png)
+  
 - **Detail Pesanan User**
   ![Detail Pesanan User](img/detail_pesanan_user.png)
 
@@ -74,8 +79,7 @@ Berikut adalah tampilan halaman untuk admin:
 - **Statistik Admin**
   ![Statistik Admin](img/Statistik_admin.png)
 
-- **Midtrans Integration Admin**
-  ![Midtrans Integration Admin](img/Midtrans_user.png)
+
 
 ## Kontribusi
 Jika Anda ingin berkontribusi dalam proyek ini, silakan fork repository ini dan kirim pull request dengan perubahan Anda. Pastikan untuk mengikuti pedoman kontribusi yang telah ditentukan.
