@@ -51,9 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main class="bg-gray-300">
         <div class="flex items-center justify-center h-screen mt-38">
-            <!-- Kontainer Utama -->
             <div class="flex flex-col lg:flex-row bg-white shadow-lg rounded-lg w-full lg:w-3/4 overflow-hidden">
-                <!-- Bagian Kiri: Gradasi dengan Gambar -->
                 <div class="bg-gradient-to-br from-amber-600 via-amber-900 to-amber-950 w-full lg:w-1/2 p-10 flex flex-col justify-center relative"
                     data-aos="fade-right" style="position: relative;">
                     <img src="img/toko.png" alt="Toko"
@@ -62,14 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h1 class="text-4xl font-bold text-white text-center mt-64 lg:mt-80" data-aos="fade-up">Bakery
                         Indonesia</h1>
                 </div>
-
-                <!-- Bagian Kanan: Form Login -->
                 <div class="w-full lg:w-1/2 p-10 flex flex-col justify-center" data-aos="fade-left"
                     data-aos-duration="1500">
                     <h2 class="text-2xl font-bold text-gray-800 mb-6">Selamat Datang Kembali!</h2>
                     <p class="text-gray-600 mb-6">Silakan masuk ke akun Anda</p>
                     <form action="" method="POST">
-                        <!-- Email Input -->
                         <div class="mb-4">
                             <label class="block text-gray-600 font-medium mb-2">Alamat Email</label>
                             <div class="flex items-center bg-gray-100 rounded-lg px-3 py-2">
@@ -103,8 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </main>
-
-    <!-- Memuat AOS (untuk inisialisasi animasi) -->
     <script>
         AOS.init({
             duration: 1000,

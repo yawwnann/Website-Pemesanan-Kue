@@ -11,7 +11,7 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
-// Ambil id user yang sedang login
+// Ambil id user 
 $userId = $_SESSION['user']['id'];
 
 

@@ -1,30 +1,25 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Mulai sesi jika belum aktif
+    session_start();
 }
 include 'config/database.php';
 include 'header.php';
 
-// Pastikan pengguna sudah login
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit;
 }
 
-// Ambil ID pengguna yang sedang login
 $userId = $_SESSION['user']['id'];
 
-// Ambil order_id dari URL
 $orderId = isset($_GET['order_id']) ? $_GET['order_id'] : null;
 
 if ($orderId) {
-    // Query untuk mendapatkan detail pesanan
     $query = $pdo->prepare("SELECT * FROM orders WHERE id = ? AND user_id = ?");
     $query->execute([$orderId, $userId]);
     $order = $query->fetch(PDO::FETCH_ASSOC);
 
     if ($order) {
-        // Query untuk mendapatkan item-item pesanan
         $itemQuery = $pdo->prepare("SELECT oi.*, p.name AS product_name, p.image, p.price 
                                     FROM order_items oi
                                     JOIN products p ON oi.product_id = p.id
@@ -47,7 +42,6 @@ if ($orderId) {
             </div>
 
             <?php if ($order): ?>
-                <!-- Tombol Kembali -->
                 <div class="mb-6">
                     <a href="pesanan_status.php"
                         class="inline-block px-6 py-2 text-white bg-yellow-600 hover:bg-yellow-700 rounded-lg shadow-md">
