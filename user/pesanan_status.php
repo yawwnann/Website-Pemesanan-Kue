@@ -2,12 +2,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); // Mulai sesi hanya jika belum aktif
 }
-include 'config/database.php';
+include '../config/database.php';
 include 'header.php';
 
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 

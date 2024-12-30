@@ -2,11 +2,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'config/database.php';
+include '../config/database.php';
 include 'header.php';
 
 if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 

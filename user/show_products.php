@@ -1,10 +1,10 @@
 <?php
 
-include 'config/database.php';
+include '../config/database.php';
 include 'header.php';
 
 if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -195,7 +195,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include 'footer.php'; ?>
 
-<script src="js/products.js"></script>
+<script src="../js/products.js"></script>
 
 <script>
     AOS.init({

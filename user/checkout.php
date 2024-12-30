@@ -2,13 +2,13 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'config/database.php';
-include 'config/midtrans_config.php';
+include '../config/database.php';
+include '../config/midtrans_config.php';
 include 'header.php';
 
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -93,6 +93,6 @@ foreach ($cartItems as $item) {
 </main>
 
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-PEVLiowZwZNrnJPX"></script>
-<script src="js/checkout.js"></script>
+<script src="../js/checkout.js"></script>
 
 <?php include 'footer.php'; ?>

@@ -4,11 +4,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
-include 'config/database.php';
+include '../config/database.php';
 include 'header_admin.php';
 
 $statusFilter = isset($_GET['status']) ? $_GET['status'] : '';
@@ -172,4 +172,4 @@ function sortingLink($column, $currentOrderBy, $currentOrderDir)
     </div>
 </main>
 
-<script src="js/view_order.js"></script>
+<script src="../js/view_order.js"></script>

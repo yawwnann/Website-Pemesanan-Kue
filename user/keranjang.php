@@ -1,11 +1,11 @@
 <?php
-ob_start();  // Menangguhkan output sebelum session_start() atau header() dipanggil
-session_start(); // Memulai sesi jika belum dimulai
-include 'config/database.php';
+ob_start();
+session_start();
+include '../config/database.php';
 include 'header.php';
 
 if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 

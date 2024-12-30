@@ -2,12 +2,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'config/database.php';
-include 'config/midtrans_config.php';
+include '../config/database.php';
+include '../config/midtrans_config.php';
 
-// Pastikan pengguna sudah login
+// Memastikan pengguna sudah login
 if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -81,15 +81,15 @@ $transaction_data = [
 ];
 
 try {
-    // Menggunakan Midtrans Snap untuk mendapatkan token pembayaran
+    // mendapatkan token pembayaran
     $snapToken = \Midtrans\Snap::getSnapToken($transaction_data);
 
-    // Kirimkan snap token kepada frontend
+    // Kirimkan snap token ke frontend
     echo json_encode(['snap_token' => $snapToken]);
 
 
 } catch (Exception $e) {
-    // Jika terjadi kesalahan dalam proses pembayaran, tampilkan pesan error
+    // Jika terjadi kesalahan dalam proses pembayaran
     echo "<script>alert('Terjadi kesalahan saat memproses pembayaran. Silakan coba lagi.'); window.location.href = 'keranjang.php';</script>";
     exit;
 }

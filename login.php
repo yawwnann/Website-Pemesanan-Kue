@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Redirect berdasarkan peran 
         if ($user['role'] === 'admin') {
-            header('Location: statistik.php');
+            header('Location: admin/statistik.php');
         } else {
-            header('Location: index.php');
+            header('Location: user/index.php');
         }
         exit;
     } else {

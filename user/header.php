@@ -14,12 +14,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toko Roti</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="../css/tailwind.css">
 
-    <!-- Box Icon -->
+    <!-- Box Icon - hanya menggunakan satu link untuk Boxicons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
@@ -31,8 +29,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
     <!-- Snap Midtrans -->
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="SB-Mid-client-PEVLiowZwZNrnJPX"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-PEVLiowZwZNrnJPX"></script>
 
     <style>
         .underline-animation {
@@ -124,31 +121,31 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
             <div class="flex items-center ">
                 <?php if (isset($_SESSION['user'])): ?>
-                    <span class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
-                        Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>
-                    </span>
+                        <span class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
+                            Hello, <?= htmlspecialchars($_SESSION['user']['username']); ?>
+                        </span>
 
-                    <!-- Keranjang dengan indikator jumlah item -->
-                    <a href="keranjang.php"
-                        class="relative text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
-                        <i class="bx bx-cart-alt text-2xl"></i>
-                        <?php if (isset($_SESSION['cart_count']) && $_SESSION['cart_count'] > 0): ?>
-                            <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
-                                <?= $_SESSION['cart_count'] ?>
-                            </span>
-                        <?php endif; ?>
-                    </a>
+                        <!-- Keranjang dengan indikator jumlah item -->
+                        <a href="keranjang.php"
+                            class="relative text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">
+                            <i class="bx bx-cart-alt text-2xl"></i>
+                            <?php if (isset($_SESSION['cart_count']) && $_SESSION['cart_count'] > 0): ?>
+                                    <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                                        <?= $_SESSION['cart_count'] ?>
+                                    </span>
+                            <?php endif; ?>
+                        </a>
 
-                    <!-- Logout Button -->
-                    <button id="logoutBtn"
-                        class="text-gray-700 hover:text-red-500 hover:scale-105 font-medium transition duration-300">
-                        <i class="bx bx-log-out text-2xl"></i>
-                    </button>
+                        <!-- Logout Button -->
+                        <button id="logoutBtn"
+                            class="text-gray-700 hover:text-red-500 hover:scale-105 font-medium transition duration-300">
+                            <i class="bx bx-log-out text-2xl"></i>
+                        </button>
 
                 <?php else: ?>
 
-                    <a href="login.php"
-                        class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">Login/Register</a>
+                        <a href="login.php"
+                            class="text-gray-700 hover:text-yellow-500 hover:scale-105 font-medium transition duration-300">Login/Register</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -158,7 +155,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <div id="logoutModal" class="modal">
         <div class="modal-content">
             <h2 class="text-lg font-bold mb-4">Apakah Anda yakin ingin logout?</h2>
-            <form action="logout.php" method="POST">
+            <form action="../logout.php" method="POST">
                 <button type="submit" class="modal-button">Logout</button>
             </form>
             <button id="closeModalBtn" class="modal-button bg-gray-500 hover:bg-gray-600">Batal</button>
@@ -166,24 +163,24 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </div>
 
     <script>
-        const logoutBtn=document.getElementById("logoutBtn");
-        const logoutModal=document.getElementById("logoutModal");
-        const closeModalBtn=document.getElementById("closeModalBtn");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const logoutModal = document.getElementById("logoutModal");
+        const closeModalBtn = document.getElementById("closeModalBtn");
 
         // Menampilkan modal
-        logoutBtn.addEventListener("click",() => {
-            logoutModal.style.display="flex";
+        logoutBtn.addEventListener("click", () => {
+            logoutModal.style.display = "flex";
         });
 
         // Menutup modal
-        closeModalBtn.addEventListener("click",() => {
-            logoutModal.style.display="none";
+        closeModalBtn.addEventListener("click", () => {
+            logoutModal.style.display = "none";
         });
 
         // Menutup modal jika klik di luar area modal
-        window.addEventListener("click",(event) => {
-            if(event.target===logoutModal) {
-                logoutModal.style.display="none";
+        window.addEventListener("click", (event) => {
+            if (event.target === logoutModal) {
+                logoutModal.style.display = "none";
             }
         });
     </script>

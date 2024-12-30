@@ -1,9 +1,9 @@
 <?php
 
 include 'header.php';
-include 'config/database.php';
+include '../config/database.php';
 if (!isset($_SESSION['user'])) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -30,7 +30,7 @@ if (!isset($_SESSION['user'])) {
             </div>
 
             <div class="lg:w-1/2 flex justify-center relative" data-aos="fade-left">
-                <img src="img/kue1.png" alt="Kue dan Donat" class="w-full max-w-3xl relative z-10">
+                <img src="../img/kue1.png" alt="Kue dan Donat" class="w-full max-w-3xl relative z-10">
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@ if (!isset($_SESSION['user'])) {
                 </p>
             </div>
             <div class="lg:w-1/2 flex justify-center rounded-lg mt-6 lg:mt-0 overflow-hidden" data-aos="fade-left">
-                <img src="img/roti-profil.jpg" alt="Roti Profil"
+                <img src="../img/roti-profil.jpg" alt="Roti Profil"
                     class="rounded-lg shadow-lg object-cover w-full max-w-md lg:max-w-lg transition-transform duration-300 transform hover:scale-110">
             </div>
         </div>
@@ -111,7 +111,7 @@ if (!isset($_SESSION['user'])) {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
                 <div class="relative group overflow-hidden" data-aos="fade-right">
-                    <img src="img/cakes.jpg" alt="Cakes"
+                    <img src="../img/cakes.jpg" alt="Cakes"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
                     <div
                         class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
@@ -120,7 +120,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
 
                 <div class="relative group overflow-hidden" data-aos="fade-down">
-                    <img src="img/dry-cakes.jpg" alt="Dry Cakes"
+                    <img src="../img/dry-cakes.jpg" alt="Dry Cakes"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
                     <div
                         class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
@@ -129,7 +129,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
 
                 <div class="relative group overflow-hidden" data-aos="fade-up">
-                    <img src="img/cookies.jpg" alt="Cookies"
+                    <img src="../img/cookies.jpg" alt="Cookies"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
                     <div
                         class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
@@ -138,7 +138,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
 
                 <div class="relative group overflow-hidden" data-aos="fade-left">
-                    <img src="img/butter-cake.jpeg" alt="Butter Cake"
+                    <img src="../img/butter-cake.jpeg" alt="Butter Cake"
                         class="w-full h-72 object-cover transition-transform duration-300 transform group-hover:scale-110 ">
                     <div
                         class="absolute inset-0 top-1/2 transform -translate-y-35%] text-white text-3xl font-bold text-center">
@@ -271,7 +271,7 @@ if (!isset($_SESSION['user'])) {
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-<script src="js/Swiper.js"></script>
+<script src="../js/Swiper.js"></script>
 <script>
     AOS.init({
         duration: 1000,

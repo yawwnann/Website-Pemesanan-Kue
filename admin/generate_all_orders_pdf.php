@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 // Periksa apakah user adalah admin
 if (session_status() === PHP_SESSION_NONE) {
@@ -7,11 +7,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
-include 'config/database.php';
+include '../config/database.php';
 
 // Ambil data semua pesanan
 $stmt = $pdo->query("SELECT * FROM orders ORDER BY created_at DESC");

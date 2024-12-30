@@ -4,11 +4,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
-include 'config/database.php';
+include '../config/database.php';
 include 'header_admin.php';
 
 $orderId = isset($_GET['id']) ? (int) $_GET['id'] : 0;

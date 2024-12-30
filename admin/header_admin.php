@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Mengalihkan pengguna jika tidak login atau bukan admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('Location: login.php'); // Redirect ke halaman login
+    header('Location: ../login.php'); // Redirect ke halaman login
     exit; // Menghentikan eksekusi setelah pengalihan
 }
 
@@ -160,14 +160,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <!-- Tombol Logout -->
         <div class="user-info mt-4">
             <?php if (isset($_SESSION['user'])): ?>
-                <form action="logout.php" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
+                <form action="../logout.php" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
                     <button type="submit"
                         class="flex items-center w-full py-2 text-gray-700 font-medium transition duration-300">
                         <i class="fas fa-sign-out-alt mr-3"></i> Logout
                     </button>
                 </form>
             <?php else: ?>
-                <a href="login.php" class="w-full py-2 text-gray-700 font-medium transition duration-300 flex items-center">
+                <a href="../login.php"
+                    class="w-full py-2 text-gray-700 font-medium transition duration-300 flex items-center">
                     <i class="fas fa-sign-in-alt mr-3"></i> Login/Register
                 </a>
             <?php endif; ?>

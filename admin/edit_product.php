@@ -1,5 +1,5 @@
 <?php
-include 'config/database.php';
+include '../config/database.php';
 include 'header_admin.php';
 
 // Periksa apakah ID produk ada di URL dan valid
