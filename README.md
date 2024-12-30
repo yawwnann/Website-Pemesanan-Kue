@@ -82,7 +82,7 @@ Platform web untuk memesan berbagai jenis kue secara online dengan mudah. Websit
 ---
 
 ## **📧 Kontak**
-Untuk pertanyaan atau dukungan, silakan hubungi kami melalui email: support@websitepemesanan.kue
+Untuk pertanyaan atau dukungan, silakan hubungi kami melalui email: c0478592@gmail.com
 
 ---
 
