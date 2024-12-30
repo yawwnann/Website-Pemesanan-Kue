@@ -28,12 +28,13 @@ Platform web untuk memesan berbagai jenis kue secara online dengan mudah. Websit
 - **Tailwind CSS**: Untuk desain yang responsif dan modern.
 - **Ajax**: Mempercepat interaksi pengguna tanpa refresh halaman.
 - **AOS JS & Swiper JS**: Menambah animasi dan slider untuk pengalaman pengguna yang dinamis.
-- **Midtrans API**: Integrasi pembayaran yang aman dan nyaman.
+
 
 ### **Backend (Admin):**
 - **Tailwind CSS**: Desain yang konsisten untuk panel admin.
 - **AOS JS & Delivr JS**: Animasi dan pengelolaan modul yang optimal.
-
+- **Midtrans API**: Integrasi pembayaran yang aman dan nyaman.
+  
 ---
 
 ## **📦 Instalasi**
