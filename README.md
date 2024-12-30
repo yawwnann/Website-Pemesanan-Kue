@@ -79,9 +79,6 @@ Berikut adalah tampilan halaman untuk admin:
 - **Daftar Pesanan Admin**
   ![Daftar Pesanan Admin](img/Daftar_pesanan_admin.png)
 
-- **Statistik Admin**
-  ![Statistik Admin](img/Statistik_admin.png)
-
 
 
 ## Kontribusi
