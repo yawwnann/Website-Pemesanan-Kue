@@ -14,16 +14,14 @@ if (!isset($_SESSION['user'])) {
 // Ambil id user yang sedang login
 $userId = $_SESSION['user']['id'];
 
-// Ambil order_id dari URL untuk melihat status pesanan tertentu
+
 $orderId = isset($_GET['order_id']) ? $_GET['order_id'] : null;
 
 if ($orderId) {
-    // Jika ada order_id, hanya tampilkan pesanan yang sesuai
     $query = $pdo->prepare("SELECT * FROM orders WHERE id = ? AND user_id = ?");
     $query->execute([$orderId, $userId]);
     $orders = $query->fetchAll(PDO::FETCH_ASSOC);
 } else {
-    // Jika tidak ada order_id, tampilkan semua pesanan
     $query = $pdo->prepare("SELECT * FROM orders WHERE user_id = ?");
     $query->execute([$userId]);
     $orders = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -33,13 +31,10 @@ if ($orderId) {
 <main>
     <div class="min-h-screen mt-20 py-20 pt-30">
         <div class="container mx-auto px-6 lg:px-20">
-            <!-- Judul Halaman -->
             <div class="text-center mb-10" data-aos="fade-up" data-aos-duration="500">
                 <h2 class="text-5xl font-bold text-black">Status Pesanan</h2>
                 <p class="text-lg text-gray-900 mt-2">Lihat status pesanan yang telah Anda buat.</p>
             </div>
-
-            <!-- Tabel Status Pesanan -->
             <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-right" data-aos-duration="500">
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse">
@@ -50,12 +45,13 @@ if ($orderId) {
                                 <th class="px-4 py-3">Alamat</th>
                                 <th class="px-4 py-3">Total Harga</th>
                                 <th class="px-4 py-3">Status</th>
+                                <th class="px-4 py-3">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (empty($orders)): ?>
                                 <tr>
-                                    <td colspan="5" class="text-center text-gray-600 py-4" data-aos="fade-in"
+                                    <td colspan="6" class="text-center text-gray-600 py-4" data-aos="fade-in"
                                         data-aos-delay="200">Anda belum memiliki pesanan.</td>
                                 </tr>
                             <?php else: ?>
@@ -66,6 +62,10 @@ if ($orderId) {
                                         <td class="px-4 py-3"><?= htmlspecialchars($order['address']) ?></td>
                                         <td class="px-4 py-3">Rp <?= number_format($order['total_price'], 0, ',', '.') ?></td>
                                         <td class="px-4 py-3"><?= ucfirst(htmlspecialchars($order['status'])) ?></td>
+                                        <td class="px-4 py-3">
+                                            <a href="pesanan_detail.php?order_id=<?= htmlspecialchars($order['id']) ?>"
+                                                class="text-blue-500 hover:underline">Lihat Detail</a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>

@@ -9,7 +9,6 @@ document.getElementById("payButton").addEventListener("click", function () {
       if (data.snap_token) {
         window.snap.pay(data.snap_token, {
           onSuccess: function (result) {
-            // Redirect ke halaman pesanan_status.php setelah pembayaran berhasil
             alert("Pembayaran berhasil!");
             window.location.href =
               "show_products.php?order_id=" + result.order_id;

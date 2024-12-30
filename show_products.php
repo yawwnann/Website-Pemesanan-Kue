@@ -101,7 +101,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         value="<?= htmlspecialchars($search) ?>">
                     <button type="submit"
                         class="flex items-center px-6 py-3 bg-yellow-900 text-white rounded-lg font-semibold shadow-md hover:bg-yellow-700 transition">
-                        <i class="fas fa-search"></i> <!-- Search Icon inside button -->
+                        <i class="fas fa-search"></i>
                         <span>Cari</span>
                     </button>
                 </form>
@@ -183,7 +183,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
             </div>
 
-            <!-- Pesan Berhasil Ditambahkan -->
             <?php if ($showMessage): ?>
                 <div id="successMessage" class="bg-green-200 p-4 rounded-lg mt-4">
                     <p class="text-green-800">Produk <strong><?= htmlspecialchars($addedProductName) ?></strong> telah
@@ -196,28 +195,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include 'footer.php'; ?>
 
-<script>
-    // Fungsi untuk menambahkan produk ke keranjang
-    function addToCart(productId) {
-        const formData=new FormData();
-        formData.append('product_id',productId);
-
-        fetch('',{
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.text())
-            .then(data => {
-                if(data) {
-                    // Tampilkan pesan bahwa produk telah berhasil ditambahkan ke keranjang
-                    const successMessage=document.getElementById('successMessage');
-                    successMessage.style.display='block';
-                    successMessage.querySelector('p').textContent='Produk '+data+' telah berhasil ditambahkan ke keranjang.';
-                }
-            })
-            .catch(error => console.error('Error:',error));
-    }
-</script>
+<script src="js/products.js"></script>
 
 <script>
     AOS.init({
@@ -227,12 +205,5 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         mirror: true,
     });
 
-    // Show filter and sort dropdowns when buttons are clicked
-    document.getElementById('filterButton').addEventListener('click',function() {
-        document.getElementById('filterDropdown').classList.toggle('hidden');
-    });
 
-    document.getElementById('sortButton').addEventListener('click',function() {
-        document.getElementById('sortDropdown').classList.toggle('hidden');
-    });
 </script>
