@@ -20,10 +20,21 @@ Website Pemesanan Kue adalah platform berbasis web yang memungkinkan pengguna un
    - Admin dapat menambahkan, mengedit, atau menghapus produk kue yang ada di katalog.
    - Admin dapat melihat dan mengelola status pesanan, seperti status pengiriman atau pembayaran.
    - Admin dapat melacak riwayat pesanan yang telah selesai.
+   - Admin dapat melihat statistik pemesanan
 
-### 4. **Notifikasi dan Konfirmasi Pesanan**
-   - Setelah pesanan dikonfirmasi, pengguna menerima email atau pemberitahuan tentang status pesanan mereka.
-   - Admin juga mendapatkan notifikasi setiap kali ada pesanan baru yang masuk.
+## Teknologi yang Digunakan
+
+### **User**
+- Tailwind CSS
+- Ajax
+- AOS JS
+- Swipper JS
+- Midtrans Payment Gateway API
+
+### **Admin**
+- Tailwind CSS
+- AOS JS
+- Delivr JS
 
 ## Instalasi
 
