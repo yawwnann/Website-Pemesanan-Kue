@@ -1,5 +1,5 @@
 <?php
-session_start(); // Memulai sesi
+session_start();
 include 'config/database.php';
 
 
@@ -8,13 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // Query untuk memeriksa email
     $query = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $query->execute([$email]);
     $user = $query->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
-        // Simpan data pengguna ke dalam sesi
         $_SESSION['user'] = [
             'id' => $user['id'],
             'username' => $user['username'],
@@ -22,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'role' => $user['role']
         ];
 
-        // Redirect berdasarkan peran pengguna
+        // Redirect berdasarkan peran 
         if ($user['role'] === 'admin') {
             header('Location: statistik.php');
         } else {
