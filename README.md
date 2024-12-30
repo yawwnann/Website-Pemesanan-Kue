@@ -38,7 +38,7 @@ Website Pemesanan Kue adalah platform berbasis web yang memungkinkan pengguna un
 ### **Bagian User**
 Berikut adalah tampilan halaman untuk pengguna:
 - **Dashboard User**
-  ![Dashboard User](img/Dashboard_user.png)
+  ![Dashboard User](img/dashboard_user.png)
   
 - **Keranjang User**
   ![Keranjang User](img/Keranjang_user.png)
