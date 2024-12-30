@@ -66,6 +66,9 @@ Berikut adalah tampilan halaman untuk admin:
 
 - **Login Admin**
   ![Login Admin](img/Login.png)
+  
+  - **Statistik Admin**
+  ![Statistik Admin](img/Statistik_admin.png)
 
 - **Tambah Pesanan Admin**
   ![Tambah Pesanan Admin](img/Tambah_pesanan_admin.png)
