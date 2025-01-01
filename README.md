@@ -1,90 +1,91 @@
-# **Website Pemesanan Kue** 🍰
+# **🍰 Website Pemesanan Kue Online** 🎂
 
-Platform web untuk memesan berbagai jenis kue secara online dengan mudah. Website ini dilengkapi fitur lengkap untuk pengguna maupun admin, memberikan pengalaman pemesanan yang menyenangkan dan pengelolaan yang efisien.
+**Platform Pemesanan Kue yang Mudah dan Cepat!**  
+Nikmati pengalaman memesan berbagai jenis kue dengan antarmuka yang ramah pengguna dan sistem pengelolaan yang efisien. Website ini memiliki fitur lengkap untuk pelanggan dan admin, memberikan kemudahan dalam bertransaksi dan pengelolaan pesanan.
 
 ---
 
 ## **✨ Fitur Utama**
 
 ### 1. **Pemesanan Kue** 🛒
-- **Telusuri Produk**: Lihat berbagai jenis kue dengan gambar, deskripsi, dan harga.
-- **Pilih Sesuai Keinginan**: Pilih jumlah kue yang ingin dipesan dengan antarmuka yang intuitif.
+- **Telusuri Beragam Kue**: Jelajahi katalog kue dengan tampilan gambar yang menarik, deskripsi detail, dan harga transparan.
+- **Pilih dan Sesuaikan**: Pilih jumlah dan jenis kue yang diinginkan dengan antarmuka yang intuitif dan mudah digunakan.
 
-### 2. **Checkout dan Pembayaran** 💳
-- **Informasi Pengiriman**: Masukkan nama, alamat, dan nomor telepon saat checkout.
-- **Beragam Metode Pembayaran**: Dukung pembayaran via transfer bank dan aplikasi pembayaran.
-- **Tinjau Pesanan**: Periksa kembali pesanan sebelum menyelesaikan pembayaran.
+### 2. **Proses Checkout dan Pembayaran** 💳
+- **Masukkan Detail Pengiriman**: Isi informasi alamat pengiriman dan nomor telepon untuk memudahkan pengiriman.
+- **Metode Pembayaran yang Beragam**: Nikmati kemudahan bertransaksi melalui transfer bank, serta integrasi aplikasi pembayaran populer.
+- **Tinjau Pesanan**: Pastikan semua informasi sudah benar sebelum menyelesaikan pembayaran.
 
 ### 3. **Panel Admin** 👨‍💻
-- **Kelola Produk**: Tambahkan, edit, atau hapus produk kue di katalog.
-- **Manajemen Pesanan**: Pantau status pesanan, pengiriman, dan pembayaran.
-- **Riwayat dan Statistik**: Lacak riwayat pesanan dan lihat data statistik pemesanan.
+- **Manajemen Produk**: Mudah untuk menambah, mengedit, atau menghapus produk dari katalog kue.
+- **Pemantauan Pesanan**: Cek status pesanan, pengiriman, dan pembayaran dengan mudah.
+- **Riwayat dan Statistik**: Lihat laporan lengkap dan data statistik mengenai pemesanan untuk pengelolaan yang lebih baik.
 
 ---
 
 ## **🛠 Teknologi yang Digunakan**
 
 ### **Frontend (User):**
-- **Tailwind CSS**: Untuk desain yang responsif dan modern.
-- **Ajax**: Mempercepat interaksi pengguna tanpa refresh halaman.
-- **AOS JS & Swiper JS**: Menambah animasi dan slider untuk pengalaman pengguna yang dinamis.
-
+- **Tailwind CSS**: Framework CSS untuk desain web responsif yang modern dan estetis.
+- **Ajax**: Interaksi lebih cepat tanpa perlu memuat ulang halaman.
+- **AOS JS & Swiper JS**: Menambahkan animasi halus dan slider dinamis untuk pengalaman pengguna yang lebih interaktif.
 
 ### **Backend (Admin):**
-- **Tailwind CSS**: Desain yang konsisten untuk panel admin.
-- **AOS JS & Delivr JS**: Animasi dan pengelolaan modul yang optimal.
-- **Midtrans API**: Integrasi pembayaran yang aman dan nyaman.
-  
+- **Tailwind CSS**: Desain konsisten dan sederhana untuk panel admin.
+- **AOS JS & Delivr JS**: Efisiensi animasi dan pengelolaan modul untuk pengalaman admin yang lebih nyaman.
+- **Midtrans API**: Solusi pembayaran yang aman dan cepat, mendukung berbagai metode pembayaran.
+
 ---
 
 ## **📦 Instalasi**
 
 ### **Persyaratan Sistem**
 - **PHP**: Versi 7.4 atau lebih tinggi.
-- **Database**: MySQL atau kompatibel lainnya.
-- **Server Lokal**: XAMPP (opsional, untuk pengembangan).
-- **Composer**: Untuk manajemen dependensi.
-
+- **Database**: MySQL atau sistem database yang kompatibel.
+- **Server Lokal**: XAMPP atau software sejenis (opsional untuk pengembangan).
+- **Composer**: Untuk manajemen dependensi dan pengelolaan paket.
 
 ---
 
 ## **📸 Dokumentasi Gambar**
 
-### **Tampilan User**
-- **Dashboard**:  
-  ![Dashboard User](img/dashboard_user.png)
-- **Keranjang**:  
-  ![Keranjang User](img/Keranjang_user.png)
-- **Checkout**:  
-  ![Checkout User](img/checkout_user.png)
+### **Tampilan Pengguna**
+- **Dashboard Pengguna**:  
+  ![Dashboard Pengguna](img/dashboard_user.png)
+- **Keranjang Belanja**:  
+  ![Keranjang Pengguna](img/Keranjang_user.png)
+- **Proses Checkout**:  
+  ![Checkout Pengguna](img/checkout_user.png)
 - **Integrasi Midtrans**:  
-  ![Midtrans Integration Admin](img/Midtrans_user.png)
+  ![Midtrans Pengguna](img/Midtrans_user.png)
 - **Detail Pesanan**:  
-  ![Detail Pesanan User](img/detail_pesanan_user.png)
+  ![Detail Pesanan Pengguna](img/detail_pesanan_user.png)
 - **Status Pesanan**:  
-  ![Status Pemesanan User](img/status_pemesanan_user.png)
+  ![Status Pesanan Pengguna](img/status_pemesanan_user.png)
 - **Lokasi Pengiriman**:  
-  ![Lokasi User](img/lokasi_user.png)
+  ![Lokasi Pengiriman Pengguna](img/lokasi_user.png)
 - **Detail Produk**:  
-  ![Product Item User](img/product_item_user.png)
+  ![Detail Produk Pengguna](img/product_item_user.png)
 
 ### **Tampilan Admin**
-- **Login**:  
+- **Halaman Login Admin**:  
   ![Login Admin](img/Login.png)
 - **Statistik Pemesanan**:  
   ![Statistik Admin](img/Statistik_admin.png)
 - **Tambah Pesanan**:  
   ![Tambah Pesanan Admin](img/Tambah_pesanan_admin.png)
-- **Detail Pesanan**:  
+- **Detail Pesanan Admin**:  
   ![Detail Pesanan Admin](img/detail_pesanan_admin.png)
-- **Daftar Pesanan**:  
+- **Daftar Pesanan Admin**:  
   ![Daftar Pesanan Admin](img/Daftar_pesanan_admin.png)
 
 ---
 
-## **📧 Kontak**
-Untuk pertanyaan atau dukungan, silakan hubungi kami melalui email: c0478592@gmail.com
+## **📧 Kontak Kami**
+
+Untuk pertanyaan atau dukungan, jangan ragu untuk menghubungi kami melalui email:  
+📧 **c0478592@gmail.com**
 
 ---
 
-Nikmati kemudahan memesan kue dengan **Website Pemesanan Kue**! 🎂
+**Nikmati kemudahan dan kenyamanan dalam memesan kue melalui Website Pemesanan Kue Online!** 🎂
