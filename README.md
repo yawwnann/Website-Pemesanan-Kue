@@ -1,4 +1,4 @@
-# **🍰 Website Pemesanan Kue Online** 🎂
+# **🍰 Website Pemesanan Kue** 🎂
 
 **Platform Pemesanan Kue yang Mudah dan Cepat!**  
 Nikmati pengalaman memesan berbagai jenis kue dengan antarmuka yang ramah pengguna dan sistem pengelolaan yang efisien. Website ini memiliki fitur lengkap untuk pelanggan dan admin, memberikan kemudahan dalam bertransaksi dan pengelolaan pesanan.
