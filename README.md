@@ -79,13 +79,5 @@ Nikmati pengalaman memesan berbagai jenis kue dengan antarmuka yang ramah penggu
 - **Daftar Pesanan Admin**:  
   ![Daftar Pesanan Admin](img/Daftar_pesanan_admin.png)
 
----
-
-## **📧 Kontak Kami**
-
-Untuk pertanyaan atau dukungan, jangan ragu untuk menghubungi kami melalui email:  
-📧 **c0478592@gmail.com**
-
----
 
 **Nikmati kemudahan dan kenyamanan dalam memesan kue melalui Website Pemesanan Kue Online!** 🎂
