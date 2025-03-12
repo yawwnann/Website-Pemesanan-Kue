@@ -35,6 +35,7 @@ Nikmati pengalaman memesan berbagai jenis kue dengan antarmuka yang ramah penggu
 - **AOS JS & Delivr JS**: Efisiensi animasi dan pengelolaan modul untuk pengalaman admin yang lebih nyaman.
 - **Midtrans API**: Solusi pembayaran yang aman dan cepat, mendukung berbagai metode pembayaran.
 
+
 ---
 
 ## **📦 Instalasi**
